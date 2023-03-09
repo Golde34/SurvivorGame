@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class BossFactory : EnemyFactory
 {
-    public override void CreateMeleeEnemy()
+    public override void CreateMeleeEnemy(Transform spawnPoint)
     {
-        var portalTransformposition = portalTransform.transform.position;
+        var spawnPosition = spawnPoint.transform.position;
         var meleeBossGameObject = Resources.Load("Prefabs/MeleeBoss") as GameObject;
         if (meleeBossGameObject != null)
         {
             var meleeBoss = Instantiate(
                 meleeBossGameObject.transform,
                 new Vector3(
-                    portalTransformposition.x,
-                    portalTransformposition.y,
-                    portalTransformposition.z
+                    spawnPosition.x,
+                    spawnPosition.y,
+                    spawnPosition.z
                 ),
                 Quaternion.identity
             );
@@ -26,18 +26,18 @@ public class BossFactory : EnemyFactory
         }
     }
 
-    public override void CreateRangedEnemy()
+    public override void CreateRangedEnemy(Transform spawnPoint)
     {
-        var portalTransformposition = portalTransform.transform.position;
+        var spawnPosition = spawnPoint.transform.position;
         var rangedBossGameObject = Resources.Load("Prefabs/RangedBoss") as GameObject;
         if (rangedBossGameObject != null)
         {
             var rangedBoss = Instantiate(
                 rangedBossGameObject.transform,
                 new Vector3(
-                    portalTransformposition.x,
-                    portalTransformposition.y,
-                    portalTransformposition.z
+                    spawnPosition.x,
+                    spawnPosition.y,
+                    spawnPosition.z
                 ),
                 Quaternion.identity
             );

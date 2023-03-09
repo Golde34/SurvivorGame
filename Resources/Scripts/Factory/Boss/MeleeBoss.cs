@@ -7,7 +7,7 @@ public class MeleeBoss : Boss
     void Awake()
     {
         // Initiates the variant's parameters
-        speed = 4f;
+        speed = 2f;
         health = 50;
     }
 }

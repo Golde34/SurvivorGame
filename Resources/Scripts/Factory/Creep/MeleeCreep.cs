@@ -7,7 +7,7 @@ public class MeleeCreep : Creep
     void Awake()
     {
         // Initiates the variant's parameters
-        speed = 8f;
+        speed = 4f;
         health = 25;
     }
 }

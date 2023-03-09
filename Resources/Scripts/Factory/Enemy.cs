@@ -25,14 +25,17 @@ public abstract class Enemy : MonoBehaviour
     {
         // Initiates timer
         timer = gameObject.AddComponent<Timer>();
-        timer.Duration = 15;
+        timer.Duration = 10;
         timer.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.right * speed * Time.deltaTime;
+        if (GameObject.FindGameObjectWithTag("Hero") != null)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position, speed * 0.2f * Time.deltaTime);
+        }
 
         // Put a life timer on those things to save memmory
         if (timer.Finished)

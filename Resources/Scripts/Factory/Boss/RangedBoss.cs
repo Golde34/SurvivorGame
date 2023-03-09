@@ -7,7 +7,7 @@ public class RangedBoss : Boss
     void Awake()
     {
         // Initiates the variant's parameters
-        speed = 8f;
+        speed = 2f;
         health = 50;
     }
 }
