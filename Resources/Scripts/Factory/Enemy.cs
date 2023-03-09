@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public abstract class Enemy : MonoBehaviour
     {
         // Initiates timer
         timer = gameObject.AddComponent<Timer>();
-        timer.Duration = 10;
+        timer.Duration = 20;
         timer.Run();
     }
 
@@ -44,5 +45,12 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.StartsWith("Hero"))
+        {
+            Debug.Log("huhuhuhuhuhuhuhuhuhuhu");
+            Destroy(gameObject);
+        }
+    }
 }
