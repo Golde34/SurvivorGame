@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour
     protected float heal;
     protected int Diamond;
     protected float range;
+    public int level {get;set;}
 
     Timer timer;
 

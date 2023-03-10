@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class RangedBoss : Boss
 {
+    public void SetStat(int level)
+    {
+        this.speed = 2f * level;
+    }
+
     void Awake()
     {
         // Initiates the variant's parameters
-        speed = 2f;
         health = 50;
     }
 }

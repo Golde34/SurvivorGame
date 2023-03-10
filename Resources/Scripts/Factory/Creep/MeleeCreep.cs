@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class MeleeCreep : Creep
 {
+    public void SetStat(int level)
+    {
+        this.speed = 4f * level;
+    }
+
     void Awake()
     {
         // Initiates the variant's parameters
-        speed = 4f;
         health = 25;
     }
 }

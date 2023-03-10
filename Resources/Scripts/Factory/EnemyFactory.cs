@@ -10,10 +10,10 @@ public abstract class EnemyFactory : MonoBehaviour
     /// <summary>
     /// Abstract method to create slow variant of enemies
     /// </summary>
-    public abstract void CreateMeleeEnemy(Transform portalTransform);
+    public abstract void CreateMeleeEnemy(Transform portalTransform, int level);
 
     /// <summary>
     /// Abstract method to create fast variant of enemies
     /// </summary>
-    public abstract void CreateRangedEnemy(Transform portalTransform);
+    public abstract void CreateRangedEnemy(Transform portalTransform, int level);
 }

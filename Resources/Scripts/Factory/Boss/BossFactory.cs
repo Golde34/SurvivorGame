@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossFactory : EnemyFactory
 {
-    public override void CreateMeleeEnemy(Transform spawnPoint)
+    public override void CreateMeleeEnemy(Transform spawnPoint, int level)
     {
         var spawnPosition = spawnPoint.transform.position;
         var meleeBossGameObject = Resources.Load("Prefabs/MeleeBoss") as GameObject;
@@ -19,6 +19,7 @@ public class BossFactory : EnemyFactory
                 ),
                 Quaternion.identity
             );
+            meleeBoss.GetComponent<MeleeBoss>().SetStat(level);
         }
         else
         {
@@ -26,7 +27,7 @@ public class BossFactory : EnemyFactory
         }
     }
 
-    public override void CreateRangedEnemy(Transform spawnPoint)
+    public override void CreateRangedEnemy(Transform spawnPoint, int level)
     {
         var spawnPosition = spawnPoint.transform.position;
         var rangedBossGameObject = Resources.Load("Prefabs/RangedBoss") as GameObject;
@@ -41,6 +42,7 @@ public class BossFactory : EnemyFactory
                 ),
                 Quaternion.identity
             );
+            rangedBoss.GetComponent<RangedBoss>().SetStat(level);
         }
         else
         {

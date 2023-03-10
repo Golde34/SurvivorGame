@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CreepFactory : EnemyFactory
 {
-    public override void CreateMeleeEnemy(Transform spawnPoint)
+    public override void CreateMeleeEnemy(Transform spawnPoint, int level)
     {
         var spawnPosition = spawnPoint.transform.position;
         var meleeCreepGameObject = Resources.Load("Prefabs/MeleeCreep") as GameObject;
         if (meleeCreepGameObject != null)
         {
-            var meleeBoss = Instantiate(
+            var meleeCreep = Instantiate(
                 meleeCreepGameObject.transform,
                 new Vector3(
                     spawnPosition.x,
@@ -19,6 +19,7 @@ public class CreepFactory : EnemyFactory
                 ),
                 Quaternion.identity
             );
+            meleeCreep.GetComponent<MeleeCreep>().SetStat(level);
         }
         else
         {
@@ -26,13 +27,13 @@ public class CreepFactory : EnemyFactory
         }
     }
 
-    public override void CreateRangedEnemy(Transform spawnPoint)
+    public override void CreateRangedEnemy(Transform spawnPoint, int level)
     {
         var spawnPosition = spawnPoint.transform.position;
         var rangedCreepGameObject = Resources.Load("Prefabs/RangedCreep") as GameObject;
         if (rangedCreepGameObject != null)
         {
-            var rangedBoss = Instantiate(
+            var rangedCreep = Instantiate(
                 rangedCreepGameObject.transform,
                 new Vector3(
                     spawnPosition.x,
@@ -41,6 +42,7 @@ public class CreepFactory : EnemyFactory
                 ),
                 Quaternion.identity
             );
+            rangedCreep.GetComponent<RangedCreep>().SetStat(level);
         }
         else
         {
