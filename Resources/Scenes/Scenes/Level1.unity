@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 586382131}
   - component: {fileID: 586382130}
+  - component: {fileID: 586382132}
   m_Layer: 0
   m_Name: Wave
   m_TagString: Untagged
@@ -183,8 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457eb4da15f277346a4ff168ea24108a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1294053433869566716, guid: 8bfd1e7da46d4cf4d94244e9161f3907, type: 3}
-  waves: []
   timeBetweenWaves: 5
   waveCountDown: 2
   bossFactory: {fileID: 0}
@@ -222,6 +221,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &586382132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586382129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7e223a09f8ece419283bae05e1da48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledMeleeCreep: []
+  pooledRangedCreep: []
+  pooledMeleeBoss: []
+  pooledRangedBoss: []
+  amountMeleeCreepToPool: 0
+  amountRangedCreepToPool: 0
+  amountMeleeBossToPool: 0
+  amountRangedBossToPool: 0
 --- !u!1 &589999478
 GameObject:
   m_ObjectHideFlags: 0

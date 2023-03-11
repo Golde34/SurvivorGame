@@ -145,19 +145,4 @@ public class WaveSpawner : MonoBehaviour
         yield break;
     }
 
-
-    //void SpawnEnemy(Transform _enemy)
-    //{
-    //    Debug.Log("Spawning Enemy:" + _enemy.name);
-    //    if (spawnPoints.Length == 0)
-    //    {
-    //        Debug.LogError("no spawn point");
-    //    }
-    //    else
-    //    {
-    //        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-    //        Instantiate(_enemy, _sp.position, Quaternion.identity);
-    //    }
-    //}
 }
