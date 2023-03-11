@@ -11,9 +11,7 @@ public abstract class Enemy : MonoBehaviour
     protected float heal;
     protected int Diamond;
     protected float range;
-    public int level {get;set;}
-
-    Timer timer;
+    protected int level;
 
     public enum EnemyType
     {
@@ -25,10 +23,7 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        // Initiates timer
-        timer = gameObject.AddComponent<Timer>();
-        timer.Duration = 20;
-        timer.Run();
+
     }
 
     // Update is called once per frame
@@ -38,20 +33,13 @@ public abstract class Enemy : MonoBehaviour
         {
             gameObject.transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position, speed * 0.2f * Time.deltaTime);
         }
-
-        // Put a life timer on those things to save memmory
-        if (timer.Finished)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name.StartsWith("Hero"))
         {
-            Debug.Log("huhuhuhuhuhuhuhuhuhuhu");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

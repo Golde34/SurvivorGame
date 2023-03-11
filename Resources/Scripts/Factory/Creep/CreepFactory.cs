@@ -7,46 +7,24 @@ public class CreepFactory : EnemyFactory
     public override void CreateMeleeEnemy(Transform spawnPoint, int level)
     {
         var spawnPosition = spawnPoint.transform.position;
-        var meleeCreepGameObject = Resources.Load("Prefabs/MeleeCreep") as GameObject;
-        if (meleeCreepGameObject != null)
+        GameObject meleeCreep = ObjectPool.SharedInstance.GetPooledObject("meleeCreep");
+        if (meleeCreep != null)
         {
-            var meleeCreep = Instantiate(
-                meleeCreepGameObject.transform,
-                new Vector3(
-                    spawnPosition.x,
-                    spawnPosition.y,
-                    spawnPosition.z
-                ),
-                Quaternion.identity
-            );
+            meleeCreep.transform.position = spawnPosition;
             meleeCreep.GetComponent<MeleeCreep>().SetStat(level);
-        }
-        else
-        {
-            throw new System.ArgumentException("Prefab does not exist.");
+            meleeCreep.SetActive(true);
         }
     }
 
     public override void CreateRangedEnemy(Transform spawnPoint, int level)
     {
         var spawnPosition = spawnPoint.transform.position;
-        var rangedCreepGameObject = Resources.Load("Prefabs/RangedCreep") as GameObject;
-        if (rangedCreepGameObject != null)
+        GameObject rangedCreep = ObjectPool.SharedInstance.GetPooledObject("rangedCreep");
+        if (rangedCreep != null)
         {
-            var rangedCreep = Instantiate(
-                rangedCreepGameObject.transform,
-                new Vector3(
-                    spawnPosition.x,
-                    spawnPosition.y,
-                    spawnPosition.z
-                ),
-                Quaternion.identity
-            );
+            rangedCreep.transform.position = spawnPosition;
             rangedCreep.GetComponent<RangedCreep>().SetStat(level);
-        }
-        else
-        {
-            throw new System.ArgumentException("Prefab does not exist.");
+            rangedCreep.SetActive(true);
         }
     }
 }

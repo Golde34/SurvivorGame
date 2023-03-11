@@ -17,8 +17,6 @@ public class WaveSpawner : MonoBehaviour
         public float rate;
     }
 
-    public Transform enemy;
-    public Wave[] waves;
     private int nextWave = 1;
     public float timeBetweenWaves = 5f;
     public float waveCountDown;
@@ -94,18 +92,7 @@ public class WaveSpawner : MonoBehaviour
 
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
-
-        //if (nextWave + 1 > waves.Length - 1)
-        //{
-        //    nextWave = 0;
-        //    Debug.Log("All WAVE COMPLETE");
-        //    state = SpawnState.ENDROUND;
-        //    Debug.Log(state.ToString());
-        //}
-        //else
-        //{
-            nextWave++;
-        //}
+        nextWave++;
     }
 
     bool EnemyIsAlive()
