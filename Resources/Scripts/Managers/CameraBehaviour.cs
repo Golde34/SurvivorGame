@@ -9,12 +9,16 @@ public class CameraBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Hero").transform;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(target.position.x, target.position.y, -10);
+        if(GameObject.FindGameObjectWithTag("Hero") != null)
+        {
+            target = GameObject.FindGameObjectWithTag("Hero").transform;
+            transform.position = new Vector3(target.position.x, target.position.y, -10);
+        }
     }
 }

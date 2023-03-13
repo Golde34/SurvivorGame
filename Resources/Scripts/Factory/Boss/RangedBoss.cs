@@ -4,14 +4,45 @@ using UnityEngine;
 
 public class RangedBoss : Boss
 {
+    protected bool canShot = true;
+
     public void SetStat(int level)
     {
-        this.speed = 2f * level;
+        // Initiates the variant's parameters
+
+        this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
+        this.health = 10 * Mathf.Pow(level, 0.25f) * 2;
+
+        this.damage = 15;
+        this.range = 2;
+        currentHealth = health;
     }
 
     void Awake()
     {
-        // Initiates the variant's parameters
-        health = 50;
+
+    }
+
+    protected override void Attack(GameObject target)
+    {
+        if (!canShot && timer.Finished)
+        {
+            canShot = true;
+        }
+        if (canShot)
+        {
+            GameObject cannonball = ObjectPool.SharedInstance.GetPooledObject("Cannonball");
+            if (cannonball != null)
+            {
+                cannonball.transform.position = gameObject.transform.position;
+                cannonball.GetComponent<Cannonball>().ResetTimer();
+                cannonball.SetActive(true);
+
+                // Shoot
+                canShot = false;
+                timer.Duration = 1;
+                timer.Run();
+            }
+        }
     }
 }

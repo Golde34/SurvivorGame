@@ -12,4 +12,9 @@ public class Creep : Enemy
     {
         return EnemyType.Creep;
     }
+
+    protected override void Attack(GameObject target)
+    {
+        
+    }
 }

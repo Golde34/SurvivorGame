@@ -1,30 +1,43 @@
-﻿using UnityEngine;
+﻿using System;
+using TMPro;
+using UnityEngine;
 
 public class King : MonoBehaviour, IHero
 {
-    public int Health { get; set; }
+    public float Health { get; set; }
     public int Damage { get; set; }
     public int Defense { get; set; }
     public float Speed { get; set; }
     public float DSpeed { get; set; }
-    public int Range { get; set; }
+    public float Range { get; set; }
+    public float currentHealth { get; set; }
 
-    public void Attack()
+    void Update()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, Range, LayerMask.GetMask("Enemy"));
-        if (hitEnemies != null)
+        GameObject target = GameObject.FindGameObjectWithTag("Hero");
+        gameObject.transform.position = target.transform.position;
+    }
+
+    public void Attack(Collider2D[] hitEnemies)
+    {
+        foreach (Collider2D enemy in hitEnemies)
         {
-            foreach (Collider2D enemy in hitEnemies)
+            if (enemy.tag.Equals("Enemy"))
             {
-                if (enemy.tag.Equals("Enemy"))
-                {
-                    Debug.Log("hit Enemy");
-                }
+                enemy.GetComponent<Enemy>().takeDamage(Damage);
             }
         }
-        else
+    }
+
+    public void takeDamage(float amount)
+    {
+        currentHealth -= amount;
+
+        Debug.Log("Current Heath: " + currentHealth+"/" + Health + "; Loss: " + amount);
+
+        if (currentHealth <= 0)
         {
-            Debug.Log("null");
+            gameObject.SetActive(false);
         }
     }
 }

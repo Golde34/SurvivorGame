@@ -7,11 +7,14 @@ using UnityEngine;
 
 public interface IHero
 {
-    int Health { get; set; }
+    float Health { get; set; }
+    float currentHealth { get; set; }
     int Damage { get; set; }
     int Defense { get; set; }
     float Speed { get; set; }
     float DSpeed { get; set; }
-    int Range { get; set; }
-    void Attack();
+    float Range { get; set; }
+    void Attack(Collider2D[] hitEnemies);
+
+    void takeDamage(float amount);
 }

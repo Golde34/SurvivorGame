@@ -8,14 +8,19 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool SharedInstance;
+
     public List<GameObject> pooledMeleeCreep;
     public List<GameObject> pooledRangedCreep;    
     public List<GameObject> pooledMeleeBoss;
     public List<GameObject> pooledRangedBoss;
+
+    public List<GameObject> pooledCannonballs;
+
     public int amountMeleeCreepToPool;
     public int amountRangedCreepToPool;    
     public int amountMeleeBossToPool;
     public int amountRangedBossToPool;
+    public int amountCannonballToPool;
 
     private void Awake()
     {
@@ -25,6 +30,7 @@ public class ObjectPool : MonoBehaviour
         amountRangedCreepToPool = 40;
         amountMeleeBossToPool = 5;
         amountRangedBossToPool = 5;
+        amountCannonballToPool = 60;
     }
 
     // Start is called before the first frame update
@@ -34,6 +40,7 @@ public class ObjectPool : MonoBehaviour
         pooledRangedCreep = new List<GameObject>();
         pooledMeleeBoss = new List<GameObject>();
         pooledRangedBoss = new List<GameObject>();
+        pooledCannonballs = new List<GameObject>();
 
         var meleeBossGameObject = Resources.Load("Prefabs/MeleeBoss") as GameObject;
         if (meleeBossGameObject != null)
@@ -93,6 +100,21 @@ public class ObjectPool : MonoBehaviour
         {
             throw new System.ArgumentException("Prefab does not exist.");
         }
+
+        var cannonballGameObject = Resources.Load("Prefabs/Cannonball") as GameObject;
+        if (cannonballGameObject != null)
+        {
+            for (int i = 0; i < amountCannonballToPool; i++)
+            {
+                var cannonball = Instantiate(cannonballGameObject);
+                cannonball.SetActive(false);
+                pooledCannonballs.Add(cannonball);
+            }
+        }
+        else
+        {
+            throw new System.ArgumentException("Prefab does not exist.");
+        }
     }
 
     // Update is called once per frame
@@ -143,6 +165,17 @@ public class ObjectPool : MonoBehaviour
                 if (!pooledRangedCreep[i].activeInHierarchy)
                 {
                     return pooledRangedCreep[i];
+                }
+            }
+            return null;
+        }
+        if (Type.Equals("Cannonball"))
+        {
+            for (int i = 0; i < amountCannonballToPool; i++)
+            {
+                if (!pooledCannonballs[i].activeInHierarchy)
+                {
+                    return pooledCannonballs[i];
                 }
             }
             return null;

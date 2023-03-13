@@ -6,7 +6,13 @@ public class Hero : MonoBehaviour
 {
     public Vector2 speed1 = new Vector2(0, 1f);
     public Vector2 speed2 = new Vector2(1f, 0);
-    protected float range = 10;
+    protected float range = 3;
+    protected float dmg = 20;
+
+
+    private float nextTimeToTakeDamage;
+    public float timeBetweenEnemyAttack;
+
     Vector2 localScale;
     public LayerMask enemyLayers;
 
@@ -66,26 +72,6 @@ public class Hero : MonoBehaviour
         {
             GoDown(0.5f);
         }
-
-        Attack();
     }
 
-    void Attack()
-    {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, range, LayerMask.GetMask("Enemy"));
-        if (hitEnemies != null)
-        {
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                if (enemy.tag.Equals("Enemy"))
-                {
-                    Debug.Log("hit Enemy");
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("null");
-        }
-    }
 }

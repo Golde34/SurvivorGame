@@ -134,6 +134,9 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 
+        creepFactory.CreateMeleeEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
+        yield return new WaitForSeconds(1f / _wave.rate);
+
         yield return new WaitForSeconds(2f / _wave.rate);
         bossFactory.CreateRangedEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
 

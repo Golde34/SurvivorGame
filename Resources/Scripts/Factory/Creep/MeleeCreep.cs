@@ -6,12 +6,21 @@ public class MeleeCreep : Creep
 {
     public void SetStat(int level)
     {
-        this.speed = 4f * level;
+        // Initiates the variant's parameters
+        this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
+
+        this.health = 10 * Mathf.Pow(level, 0.25f);
+        this.range = 0.3f;
+        this.currentHealth = health;
     }
 
     void Awake()
     {
-        // Initiates the variant's parameters
-        health = 25;
+
+    }
+
+    protected override void Attack(GameObject target)
+    {
+        target.GetComponent<IHero>().takeDamage(10);
     }
 }

@@ -8,15 +8,16 @@ public class GameplayManager : MonoBehaviour
     public HeroSpawner spawner;
     public Vector2 speed1 = new Vector2(0, 1f);
     public Vector2 speed2 = new Vector2(1f, 0);
-    protected float range = 10;
     Vector2 localScale;
     public LayerMask enemyLayers;
+    IHero hero;
 
     // Start is called before the first frame update
     void Start()
     {
+        spawner = gameObject.AddComponent<HeroSpawner>();
         spawner.SetFactory(new KingFactory());
-        spawner.SpawnHero();
+        hero = spawner.SpawnHero();
     }
 
     // Update is called once per frame
@@ -39,7 +40,14 @@ public class GameplayManager : MonoBehaviour
         {
             GoDown(target);
         }
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, hero.Range, LayerMask.GetMask("Enemy"));
+        if (hitEnemies != null && hitEnemies.Length > 0)
+        {
+            hero.Attack(hitEnemies);
+        }
     }
+
     void GoDown(GameObject gameObject)
     {
         gameObject.transform.Translate(-speed1 * Time.deltaTime * 2);
