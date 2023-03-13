@@ -10,11 +10,11 @@ public class RangedBoss : Boss
     {
         // Initiates the variant's parameters
 
-        this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
+        this.speed = speedBase * 1.5f * (1 + Mathf.Pow(0.05f, level - 1));
         this.health = 10 * Mathf.Pow(level, 0.25f) * 2;
 
         this.damage = 15;
-        this.range = 2;
+        this.range = 1.5f;
         currentHealth = health;
     }
 
@@ -35,12 +35,13 @@ public class RangedBoss : Boss
             if (cannonball != null)
             {
                 cannonball.transform.position = gameObject.transform.position;
+                cannonball.GetComponent<Cannonball>().Destination = target.transform.position;
                 cannonball.GetComponent<Cannonball>().ResetTimer();
                 cannonball.SetActive(true);
 
                 // Shoot
                 canShot = false;
-                timer.Duration = 1;
+                timer.Duration = 3;
                 timer.Run();
             }
         }

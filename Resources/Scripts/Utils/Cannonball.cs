@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using static UnityEngine.GraphicsBuffer;
 
 public class Cannonball : MonoBehaviour
@@ -13,7 +15,7 @@ public class Cannonball : MonoBehaviour
     {
         if(timer != null && timer.Finished)
         {
-            timer.Duration = 3;
+            timer.Duration = 5;
             timer.Run();
         }
     }
@@ -22,16 +24,33 @@ public class Cannonball : MonoBehaviour
     void Start()
     {
         timer = gameObject.AddComponent<Timer>();
-        timer.Duration = 3;
+        timer.Duration = 5;
         timer.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer.Finished)
+        if (timer.Finished || Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position) <= 0.2f)
         {
-            gameObject.SetActive(false);
+            Explode();
         }
+
+        if (Destination != null)
+        {
+            transform.Translate((Destination - transform.position) * Time.deltaTime * 2);
+        }
+    }
+
+    private void Explode()
+    {
+        if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position) <= 0.2f)
+        {
+            if(GameObject.Find("King") != null)
+            {
+                GameObject.Find("King").GetComponent<IHero>().takeDamage(15);
+            }
+        }
+        gameObject.SetActive(false);
     }
 }

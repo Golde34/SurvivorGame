@@ -6,8 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 public class GameplayManager : MonoBehaviour
 {
     public HeroSpawner spawner;
-    public Vector2 speed1 = new Vector2(0, 1f);
-    public Vector2 speed2 = new Vector2(1f, 0);
+    public Vector2 speed1 = new Vector2(0, 2f);
+    public Vector2 speed2 = new Vector2(2f, 0);
     Vector2 localScale;
     public LayerMask enemyLayers;
     IHero hero;
@@ -50,17 +50,17 @@ public class GameplayManager : MonoBehaviour
 
     void GoDown(GameObject gameObject)
     {
-        gameObject.transform.Translate(-speed1 * Time.deltaTime * 2);
+        gameObject.transform.Translate(-speed1 * Time.deltaTime);
     }
 
     void GoUp(GameObject gameObject)
     {
-        gameObject.transform.Translate(speed1 * Time.deltaTime * 2);
+        gameObject.transform.Translate(speed1 * Time.deltaTime);
     }
 
     void GoRight(GameObject gameObject)
     {
-        gameObject.transform.Translate(speed2 * Time.deltaTime * 2);
+        gameObject.transform.Translate(speed2 * Time.deltaTime);
 
         localScale = gameObject.transform.localScale;
         if (localScale.x < 0)
@@ -71,7 +71,7 @@ public class GameplayManager : MonoBehaviour
     }
     void GoLeft(GameObject gameObject)
     {
-        gameObject.transform.Translate(-speed2 * Time.deltaTime * 2);
+        gameObject.transform.Translate(-speed2 * Time.deltaTime);
         localScale = gameObject.transform.localScale;
         if (localScale.x > 0)
         {

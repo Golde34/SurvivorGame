@@ -121,28 +121,22 @@ public class WaveSpawner : MonoBehaviour
 
 
         //Spawn
+        for (int i = 0; i < (int)Math.Ceiling((_wave.count - 2) * 0.6f); i++)
+        {
+            creepFactory.CreateMeleeEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
+            yield return new WaitForSeconds(3 / _wave.rate);
+        }
 
         for (int i = 0; i < (int)Math.Ceiling((_wave.count-2)*0.4f); i++)
         {
             creepFactory.CreateRangedEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
-            yield return new WaitForSeconds(1f / _wave.rate);
+            yield return new WaitForSeconds(3 / _wave.rate);
         }
 
-        for (int i = 0; i < (int)Math.Ceiling((_wave.count - 2) * 0.6f); i++)
-        {
-            creepFactory.CreateMeleeEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
-            yield return new WaitForSeconds(1f / _wave.rate);
-        }
-
-        creepFactory.CreateMeleeEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
-        yield return new WaitForSeconds(1f / _wave.rate);
-
-        yield return new WaitForSeconds(2f / _wave.rate);
         bossFactory.CreateRangedEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
+        yield return new WaitForSeconds(10 / _wave.rate);
 
-        yield return new WaitForSeconds(3f / _wave.rate);
         bossFactory.CreateMeleeEnemy(spawnPoints[Random.Range(0, spawnPoints.Length)], nextWave);
-
         state = SpawnState.WAITING;
 
         yield break;
