@@ -21,9 +21,13 @@ public abstract class Enemy : MonoBehaviour
     protected float speedBase = 2; 
     protected GameObject target = null;
     protected GameObject realTarget = null;
+    protected Vector2 localScale;
 
+    private DiamondSpawner diamondSpawner;
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 5;
+
+    private EnemyState currentState;
 
     //public float separationRadius = 0.5f; // the radius within which to apply separation
     //public float separationWeight = 0.1f; // the weight to give to separation force
@@ -35,17 +39,73 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract EnemyType GetEnemyType();
-    protected abstract void Attack(GameObject target);
+    public abstract void Attack(GameObject target);
 
     // Start is called before the first frame update
     private void Start()
     {
         timer = gameObject.AddComponent<Timer>();
         rb2d = GetComponent<Rigidbody2D>();
+
+        diamondSpawner = gameObject.AddComponent<DiamondSpawner>();
+        TransitionToState(new EnemyChaseState(this));
+    }
+
+    public void TransitionToState(EnemyState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.Exit();
+        }
+
+        currentState = newState;
+        currentState.Enter();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        currentState.Update();
+    }
+
+    public void Attack()
+    {
+        realTarget = GameObject.Find("King");
+        if (Time.time >= nextTimeToDealDamage)
+        {
+            Attack(realTarget);
+            nextTimeToDealDamage = Time.time + timeBetweenEnemyAttack;
+        }
+    }
+
+    public void Chase()
+    {
+        target = GameObject.FindGameObjectWithTag("Hero");
+
+        // Enemy faces toward the main character while chasing
+        if (target.transform.position.x < gameObject.transform.position.x)
+        {
+            localScale = gameObject.transform.localScale;
+            if (localScale.x > 0)
+            {
+                localScale.x *= -1;
+                this.gameObject.transform.localScale = localScale;
+            }
+        }
+        else if (target.transform.position.x > gameObject.transform.position.x)
+        {
+            localScale = gameObject.transform.localScale;
+            if (localScale.x < 0)
+            {
+                localScale.x *= -1;
+                this.gameObject.transform.localScale = localScale;
+            }
+        }
+
+        transform.Translate((target.transform.position - transform.position) * Time.deltaTime * speed * 0.2f);
+    }
+
+    public bool IsPlayerInRange()
     {
         if (GameObject.FindGameObjectWithTag("Hero") != null && GameObject.Find("King") != null)
         {
@@ -54,60 +114,33 @@ public abstract class Enemy : MonoBehaviour
 
             if (Vector2.Distance(transform.position, target.transform.position) <= range)
             {
-                if (Time.time >= nextTimeToDealDamage)
-                {
-                    Attack(realTarget);
-                    nextTimeToDealDamage = Time.time + timeBetweenEnemyAttack;
-                }
-            }
-            else
-            {
-                transform.Translate((target.transform.position - transform.position) * Time.deltaTime * speed * 0.2f);
+                return true;
             }
         }
-
-
+        return false;
     }
 
-    //private void FixedUpdate()
-    //{
-    //    Vector2 separationForce = Vector2.zero;
-    //    int nearbyEnemies = 0;
-
-    //    // Find all enemies within separation radius
-    //    Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(gameObject.transform.position, separationRadius, LayerMask.GetMask("Enemy"));
-    //    List<Enemy> nearbyEnemiesList = new List<Enemy>();
-    //    foreach (Collider2D collider in nearbyColliders)
-    //    {
-    //        nearbyEnemiesList.Add(collider.gameObject.GetComponent<Enemy>());
-    //        nearbyEnemies++;
-    //    }
-
-    //    // Calculate separation force
-    //    foreach (Enemy enemy in nearbyEnemiesList)
-    //    {
-    //        Vector2 offset = rb2d.position - enemy.rb2d.position;
-    //        float sqrDistance = offset.sqrMagnitude;
-    //        if (sqrDistance > 0f)
-    //        {
-    //            separationForce += offset.normalized / sqrDistance;
-    //        }
-    //    }
-
-    //    // Apply separation force
-    //    if (nearbyEnemies > 0)
-    //    {
-    //        separationForce /= nearbyEnemies;
-    //        rb2d.AddForce(separationForce * separationWeight);
-    //    }
-    //}
-
-    public void takeDamage(float amount)
+    public void TakeDamage(float amount)
     {
         currentHealth -= amount;
 
         if (currentHealth <= 0)
         {
+            var diamondGameObject = Resources.Load("Prefabs/Diamond") as GameObject;
+
+            if (diamondGameObject != null)
+            {
+                var diamond = Instantiate(
+                    gameObject.transform,
+                    new Vector3(
+                        gameObject.transform.position.x,
+                        gameObject.transform.position.y,
+                        gameObject.transform.position.z
+                    ),
+                    Quaternion.identity
+                );
+            }
+
             gameObject.SetActive(false);
         }
     }

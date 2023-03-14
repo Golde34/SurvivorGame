@@ -10,7 +10,7 @@ public class MeleeBoss : Boss
 
         this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
         this.health = 10 * Mathf.Pow(level, 0.25f) * 3;
-        this.range = 0.5f;
+        this.range = 0.3f;
         currentHealth = health;
     }
 
@@ -19,7 +19,7 @@ public class MeleeBoss : Boss
 
     }
 
-    protected override void Attack(GameObject target)
+    public override void Attack(GameObject target)
     {
         target.GetComponent<IHero>().TakeDamage(20);
     }

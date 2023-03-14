@@ -26,7 +26,7 @@ public class King : MonoBehaviour, IHero
         {
             if (enemy.tag.Equals("Enemy"))
             {
-                enemy.GetComponent<Enemy>().takeDamage(Damage);
+                enemy.GetComponent<Enemy>().TakeDamage(Damage);
             }
         }
     }
