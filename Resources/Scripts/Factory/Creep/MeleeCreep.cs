@@ -10,7 +10,7 @@ public class MeleeCreep : Creep
         this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
 
         this.health = 10 * Mathf.Pow(level, 0.25f);
-        this.range = 0.3f;
+        this.range = 0.2f;
         this.currentHealth = health;
     }
 
@@ -19,7 +19,7 @@ public class MeleeCreep : Creep
 
     }
 
-    protected override void Attack(GameObject target)
+    public override void Attack(GameObject target)
     {
         target.GetComponent<IHero>().takeDamage(10);
     }

@@ -18,7 +18,7 @@ public class RangedCreep : Creep
         currentHealth = health;
     }
 
-    protected override void Attack(GameObject target)
+    public override void Attack(GameObject target)
     {
         if (!canShot && timer.Finished)
         {

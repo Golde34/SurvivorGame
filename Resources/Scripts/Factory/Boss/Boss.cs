@@ -13,7 +13,7 @@ public class Boss : Enemy
         return EnemyType.Boss;
     }
 
-    protected override void Attack(GameObject target)
+    public override void Attack(GameObject target)
     {
         
     }
