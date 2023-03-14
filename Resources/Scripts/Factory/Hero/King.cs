@@ -12,6 +12,8 @@ public class King : MonoBehaviour, IHero
     public float Range { get; set; }
     public float currentHealth { get; set; }
 
+    public IWeapon Weapon { get; set; }
+
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
@@ -29,7 +31,7 @@ public class King : MonoBehaviour, IHero
         }
     }
 
-    public void takeDamage(float amount)
+    public void TakeDamage(float amount)
     {
         currentHealth -= amount;
 
@@ -39,5 +41,12 @@ public class King : MonoBehaviour, IHero
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void UseWeapon()
+    {
+        this.Weapon = new Sword();
+        IWeaponFactory factory = new SwordFactory();
+        factory.CreateWeapon();
     }
 }

@@ -21,6 +21,6 @@ public class MeleeBoss : Boss
 
     public override void Attack(GameObject target)
     {
-        target.GetComponent<IHero>().takeDamage(20);
+        target.GetComponent<IHero>().TakeDamage(20);
     }
 }

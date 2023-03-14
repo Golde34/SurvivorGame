@@ -21,6 +21,6 @@ public class MeleeCreep : Creep
 
     public override void Attack(GameObject target)
     {
-        target.GetComponent<IHero>().takeDamage(10);
+        target.GetComponent<IHero>().TakeDamage(10);
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 public interface IHero
 {
@@ -14,7 +9,12 @@ public interface IHero
     float Speed { get; set; }
     float DSpeed { get; set; }
     float Range { get; set; }
+
+    IWeapon Weapon { get; set; }
+
     void Attack(Collider2D[] hitEnemies);
 
-    void takeDamage(float amount);
+    void TakeDamage(float amount);
+
+    void UseWeapon();
 }
