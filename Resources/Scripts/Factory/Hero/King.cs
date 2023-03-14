@@ -40,6 +40,7 @@ public class King : MonoBehaviour, IHero
 
         if (currentHealth <= 0)
         {
+            Time.timeScale = 0;
             gameObject.SetActive(false);
         }
     }

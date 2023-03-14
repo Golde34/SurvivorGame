@@ -126,21 +126,6 @@ public abstract class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            var diamondGameObject = Resources.Load("Prefabs/Diamond") as GameObject;
-
-            if (diamondGameObject != null)
-            {
-                var diamond = Instantiate(
-                    gameObject.transform,
-                    new Vector3(
-                        gameObject.transform.position.x,
-                        gameObject.transform.position.y,
-                        gameObject.transform.position.z
-                    ),
-                    Quaternion.identity
-                );
-            }
-
             gameObject.SetActive(false);
         }
     }
