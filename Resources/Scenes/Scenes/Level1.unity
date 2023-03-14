@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457eb4da15f277346a4ff168ea24108a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 5
+  timeBetweenWaves: 3
   waveCountDown: 2
   spawnPoints:
   - {fileID: 1897551002}
