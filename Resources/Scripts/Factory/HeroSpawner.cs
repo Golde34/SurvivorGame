@@ -7,8 +7,6 @@ public class HeroSpawner : MonoBehaviour
     public IHero SpawnHero()
     {
         IHero hero = heroFactory.CreateHero();
-        // Do additional setup here, like adding components or setting properties
-        Debug.Log("Spawned hero with health " + hero.Health + " and damage " + hero.Damage);
         return hero;
     }
 }

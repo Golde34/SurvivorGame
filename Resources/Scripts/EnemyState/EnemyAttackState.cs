@@ -10,12 +10,10 @@ public class EnemyAttackState : EnemyState
 
     public override void Enter()
     {
-        Debug.Log("Entering Attack state");
     }
 
     public override void Exit()
     {
-        Debug.Log("Exiting Attack state");
     }
 
     public override void Update()

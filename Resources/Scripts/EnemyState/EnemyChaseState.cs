@@ -10,12 +10,10 @@ public class EnemyChaseState : EnemyState
 
     public override void Enter()
     {
-        Debug.Log("Entering Chase state");
     }
 
     public override void Exit()
     {
-        Debug.Log("Exiting Chase state");
     }
 
     public override void Update()

@@ -26,7 +26,6 @@ public class King : MonoBehaviour, IHero
         {
             if (enemy.tag.Equals("Enemy"))
             {
-                Debug.Log("hit enemy");
                 enemy.GetComponent<Enemy>().TakeDamage(Damage);
             }
         }
@@ -50,7 +49,6 @@ public class King : MonoBehaviour, IHero
         this.Weapon = new Spear();
         IWeaponFactory factory = new SpearFactory();
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
-        Debug.Log("position: " + target.gameObject.transform.position.x);
         factory.CreateWeapon(target.gameObject.transform);
     }
 }
