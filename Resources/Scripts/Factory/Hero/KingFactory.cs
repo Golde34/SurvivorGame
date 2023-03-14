@@ -14,6 +14,7 @@ public class KingFactory : IHeroFactory
         king.Speed = 1;
         king.DSpeed = 1;
         king.Range = 0.2f;
+        king.UseWeapon();
         return king;
     }
 }

@@ -18,6 +18,7 @@ public class GameplayManager : MonoBehaviour
         spawner = gameObject.AddComponent<HeroSpawner>();
         spawner.SetFactory(new KingFactory());
         hero = spawner.SpawnHero();
+        Debug.Log("hero use: " + hero.Weapon.Name.ToString());
     }
 
     // Update is called once per frame

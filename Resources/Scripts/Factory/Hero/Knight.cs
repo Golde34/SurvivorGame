@@ -11,7 +11,7 @@ public class Knight : MonoBehaviour, IHero
     public float DSpeed { get; set; }
     public float Range { get; set; }
     public float currentHealth { get; set; }
-
+    public IWeapon Weapon { get; set; }
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
@@ -29,7 +29,7 @@ public class Knight : MonoBehaviour, IHero
         }
     }
 
-    public void takeDamage(float amount)
+    public void TakeDamage(float amount)
     {
         currentHealth -= amount;
 
@@ -39,5 +39,11 @@ public class Knight : MonoBehaviour, IHero
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void UseWeapon()
+    {
+        IWeaponFactory factory = new SpearFactory();
+        factory.CreateWeapon();
     }
 }

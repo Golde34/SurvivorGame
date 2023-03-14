@@ -48,7 +48,7 @@ public class Cannonball : MonoBehaviour
         {
             if(GameObject.Find("King") != null)
             {
-                GameObject.Find("King").GetComponent<IHero>().takeDamage(15);
+                GameObject.Find("King").GetComponent<IHero>().TakeDamage(15);
             }
         }
         gameObject.SetActive(false);
