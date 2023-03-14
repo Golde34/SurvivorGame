@@ -21,8 +21,8 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves = 5f;
     public float waveCountDown;
 
-    public BossFactory bossFactory;
-    public CreepFactory creepFactory;
+    protected BossFactory bossFactory;
+    protected CreepFactory creepFactory;
 
     public Transform[] spawnPoints;
 
