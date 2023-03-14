@@ -7,28 +7,16 @@ public class SwordFactory : MonoBehaviour, IWeaponFactory
     public IWeapon CreateWeapon(Transform heroTransform)
     {
         //Create Weapon GUI
-        var swordGameObj = Resources.Load("Prefabs/Sword") as GameObject;
-        if (swordGameObj != null)
-        {
-            var swordObj = Instantiate(
-                swordGameObj.transform,
-                new Vector3(
-                    //hero position
-                    heroTransform.position.x + 20,
-                    heroTransform.position.y + 20,
-                    heroTransform.position.z
-                ),
-                Quaternion.identity
-            );
-            //GameObject swordObj = new GameObject("Sword");
-            Sword sword = swordObj.AddComponent<Sword>();
-            sword.Damage = 5;
-            sword.FitPoint = 0;
+        var SwordGameObj = Resources.Load("Prefabs/Sword") as GameObject;
+        var SwordObj = Instantiate(SwordGameObj.transform);
+        SwordObj.transform.parent = heroTransform;
+        SwordObj.transform.localPosition = new Vector3(0.2f, 0.1f, 1.0f);
+        SwordObj.transform.localRotation = Quaternion.identity;
 
-            return sword;
-        } else
-        {
-            throw new System.ArgumentException("Prefab does not exist.");
-        }
+        Sword Sword = SwordObj.GetComponent<Sword>();
+        Sword.Damage = 5;
+        Sword.FitPoint = 0;
+        Sword.WeaponPoint = SwordObj.transform.position;
+        return Sword;
     }
 }
