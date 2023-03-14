@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MeleeCreep : Creep
 {
+    protected bool canShot = true;
+
     public void SetStat(int level)
     {
         // Initiates the variant's parameters
@@ -21,6 +23,18 @@ public class MeleeCreep : Creep
 
     public override void Attack(GameObject target)
     {
-        target.GetComponent<IHero>().TakeDamage(10);
+        if (!canShot && timer.Finished)
+        {
+            canShot = true;
+        }
+        if (canShot)
+        {
+            target.GetComponent<IHero>().TakeDamage(10);
+
+            // Shoot
+            canShot = false;
+            timer.Duration = 3;
+            timer.Run();
+        }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MeleeBoss : Boss
 {
+    protected bool canShot = true;
+
     public void SetStat(int level)
     {
         // Initiates the variant's parameters
@@ -21,6 +23,19 @@ public class MeleeBoss : Boss
 
     public override void Attack(GameObject target)
     {
-        target.GetComponent<IHero>().TakeDamage(20);
+        if (!canShot && timer.Finished)
+        {
+            canShot = true;
+        }
+        if (canShot)
+        {
+            target.GetComponent<IHero>().TakeDamage(20);
+
+            // Shoot
+            canShot = false;
+            timer.Duration = 3;
+            timer.Run();
+        }
+       
     }
 }
