@@ -11,6 +11,8 @@ public class Spear : MonoBehaviour, IWeapon
     public int Damage { get; set; }
     public int FitPoint { get; set; }
 
+    public Vector3 WeaponPoint { get; set; }
+
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Weapon");

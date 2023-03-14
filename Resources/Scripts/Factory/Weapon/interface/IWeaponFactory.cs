@@ -1,4 +1,6 @@
-﻿public interface IWeaponFactory 
+﻿using UnityEngine;
+
+public interface IWeaponFactory 
 {
-    IWeapon CreateWeapon();
+    IWeapon CreateWeapon(Transform heroTransform);
 }
