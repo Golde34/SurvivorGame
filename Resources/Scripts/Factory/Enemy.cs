@@ -1,9 +1,11 @@
 using Assets.Resources.Scripts.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR;
+using Random = UnityEngine.Random;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public abstract class Enemy : MonoBehaviour
     protected Vector2 localScale;
 
     private DiamondSpawner diamondSpawner;
+    private RegenSpawner regenSpawner;
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 5;
 
@@ -48,6 +51,7 @@ public abstract class Enemy : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
 
         diamondSpawner = gameObject.AddComponent<DiamondSpawner>();
+        regenSpawner = gameObject.AddComponent<RegenSpawner>();
         TransitionToState(new EnemyChaseState(this));
     }
 
@@ -126,6 +130,17 @@ public abstract class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            int regenPercentage = 15;
+            int randomValueBetween1And100 = Random.Range(1, 101);
+            if (randomValueBetween1And100 < regenPercentage)
+            {
+                //do 10% times
+                regenSpawner._EnemyDieEvent.Invoke(gameObject.transform);
+            }
+            else
+            {
+                diamondSpawner._EnemyDieEvent.Invoke(gameObject.transform);
+            }
             gameObject.SetActive(false);
         }
     }

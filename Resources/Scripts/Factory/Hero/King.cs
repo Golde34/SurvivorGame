@@ -15,6 +15,9 @@ public class King : MonoBehaviour, IHero
     public IWeapon Weapon { get; set; }
    
 
+    private float nextTimeToDealDamage = 0;
+    public float timeBetweenEnemyAttack = 3;
+
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
@@ -23,12 +26,17 @@ public class King : MonoBehaviour, IHero
 
     public void Attack(Collider2D[] hitEnemies)
     {
-        foreach (Collider2D enemy in hitEnemies)
+        if (Time.time >= nextTimeToDealDamage)
         {
-            if (enemy.tag.Equals("Enemy"))
+            Debug.Log("Attack at: " + Time.time);
+            foreach (Collider2D enemy in hitEnemies)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(Damage);
+                if (enemy.tag.Equals("Enemy"))
+                {
+                    enemy.GetComponent<Enemy>().TakeDamage(Damage);
+                }
             }
+            nextTimeToDealDamage = Time.time + timeBetweenEnemyAttack;
         }
     }
 
@@ -50,5 +58,20 @@ public class King : MonoBehaviour, IHero
         IWeaponFactory factory = new SpearFactory();
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
         factory.CreateWeapon(target.gameObject.transform);
+    }
+
+    public void RegenHealth(float health)
+    {
+        currentHealth += health;
+        if (currentHealth > Health)
+        {
+            currentHealth = Health;
+        }
+        Debug.Log("Heath after regen: " + currentHealth);
+    }
+
+    public void CollectDiamond(int value)
+    {
+        Debug.Log("Gain Diamond");
     }
 }

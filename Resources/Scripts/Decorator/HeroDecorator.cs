@@ -24,6 +24,16 @@ public abstract class HeroDecorator : IHero
         hero.UseWeapon();
     }
 
+    public void RegenHealth(float health)
+    {
+        hero.RegenHealth(health);
+    }
+
+    public void CollectDiamond(int value)
+    {
+        hero.CollectDiamond(value);
+    }
+
     public float Health { get => hero.Health; set => hero.Health = value; }
     public int Damage { get => hero.Damage; set => hero.Damage = value; }
     public float currentHealth { get => hero.currentHealth; set => hero.currentHealth = value; }

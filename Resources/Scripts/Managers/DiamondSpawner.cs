@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class DiamondSpawner : MonoBehaviour
 {
-    [System.Serializable]
-    public class TransformEvent : UnityEvent<Transform> { }
     public TransformEvent _EnemyDieEvent;
     private GameObject diamondGameObject;
 
@@ -27,7 +25,7 @@ public class DiamondSpawner : MonoBehaviour
         if (diamondGameObject != null)
         {
             var diamond = Instantiate(
-                transform.transform,
+                diamondGameObject.transform,
                 new Vector3(
                     transform.position.x,
                     transform.position.y,

@@ -15,6 +15,7 @@ public class HealBar : MonoBehaviour
     private void Start()
     {
         _healthSlider = GetComponent<Slider>();
+        
     }
     private void Update()
     {

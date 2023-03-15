@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Diamond : MonoBehaviour
 {
@@ -17,9 +18,32 @@ public class Diamond : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsPlayerInRange())
+        {
+            /*
+             * Player collect the diamond, then destroy the diamond
+             */
+
+            Destroy(gameObject);
+        }
         if (timer.Finished)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
+    }
+
+    public bool IsPlayerInRange()
+    {
+        if (GameObject.FindGameObjectWithTag("Hero") != null && GameObject.Find("King") != null)
+        {
+            var target = GameObject.FindGameObjectWithTag("Hero");
+            var realTarget = GameObject.Find("King");
+
+            if (Vector2.Distance(transform.position, target.transform.position) <= 0.1f)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
