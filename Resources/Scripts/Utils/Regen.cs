@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class Diamond : MonoBehaviour
+public class Regen : MonoBehaviour
 {
     private Timer timer;
 
@@ -21,8 +20,9 @@ public class Diamond : MonoBehaviour
         if (IsPlayerInRange())
         {
             /*
-             * Player collect the diamond, then destroy the diamond
+             * Player collect the regen, then destroy the diamond
              */
+            GameObject.Find("King").GetComponent<IHero>().RegenHealth(15);
 
             Destroy(gameObject);
         }

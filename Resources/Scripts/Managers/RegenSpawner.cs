@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class DiamondSpawner : MonoBehaviour
+public class RegenSpawner : MonoBehaviour
 {
     public TransformEvent _EnemyDieEvent;
-    private GameObject diamondGameObject;
+    private GameObject regenGameObject;
 
     // Start is called before the first frame update
     void Start()
@@ -17,15 +15,15 @@ public class DiamondSpawner : MonoBehaviour
 
         _EnemyDieEvent.AddListener(SpawnDiamond);
 
-        diamondGameObject = Resources.Load("Prefabs/Diamond") as GameObject;
+        regenGameObject = Resources.Load("Prefabs/Regen") as GameObject;
     }
 
     void SpawnDiamond(Transform transform)
     {
-        if (diamondGameObject != null)
+        if (regenGameObject != null)
         {
             var diamond = Instantiate(
-                diamondGameObject.transform,
+                regenGameObject.transform,
                 new Vector3(
                     transform.position.x,
                     transform.position.y,
@@ -39,6 +37,6 @@ public class DiamondSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
