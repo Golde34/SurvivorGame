@@ -31,13 +31,13 @@ public class RangedBoss : Boss
         }
         if (canShot)
         {
-            GameObject cannonball = ObjectPool.SharedInstance.GetPooledObject("Cannonball");
-            if (cannonball != null)
+            GameObject fire = ObjectPool.SharedInstance.GetPooledObject("Fire");
+            if (fire != null)
             {
-                cannonball.transform.position = gameObject.transform.position;
-                cannonball.GetComponent<Cannonball>().Destination = target.transform.position;
-                cannonball.GetComponent<Cannonball>().ResetTimer();
-                cannonball.SetActive(true);
+                fire.transform.position = gameObject.transform.position;
+                fire.GetComponent<Cannonball>().Destination = target.transform.position;
+                fire.GetComponent<Cannonball>().ResetTimer();
+                fire.SetActive(true);
 
                 // Shoot
                 canShot = false;

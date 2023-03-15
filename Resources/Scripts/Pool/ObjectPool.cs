@@ -15,12 +15,14 @@ public class ObjectPool : MonoBehaviour
     public List<GameObject> pooledRangedBoss;
 
     public List<GameObject> pooledCannonballs;
+    public List<GameObject> pooledFires;
 
     public int amountMeleeCreepToPool;
     public int amountRangedCreepToPool;    
     public int amountMeleeBossToPool;
     public int amountRangedBossToPool;
     public int amountCannonballToPool;
+    public int amountFireToPool;
 
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class ObjectPool : MonoBehaviour
         amountMeleeBossToPool = 5;
         amountRangedBossToPool = 5;
         amountCannonballToPool = 60;
+        amountFireToPool = 5;
     }
 
     // Start is called before the first frame update
@@ -41,6 +44,7 @@ public class ObjectPool : MonoBehaviour
         pooledMeleeBoss = new List<GameObject>();
         pooledRangedBoss = new List<GameObject>();
         pooledCannonballs = new List<GameObject>();
+        pooledFires = new List<GameObject>();
 
         var meleeBossGameObject = Resources.Load("Prefabs/MeleeBoss") as GameObject;
         if (meleeBossGameObject != null)
@@ -115,6 +119,21 @@ public class ObjectPool : MonoBehaviour
         {
             throw new System.ArgumentException("Prefab does not exist.");
         }
+
+        var fireGameObject = Resources.Load("Prefabs/Fire") as GameObject;
+        if (fireGameObject != null)
+        {
+            for (int i = 0; i < amountFireToPool; i++)
+            {
+                var fire = Instantiate(fireGameObject);
+                fire.SetActive(false);
+                pooledFires.Add(fire);
+            }
+        }
+        else
+        {
+            throw new System.ArgumentException("Prefab does not exist.");
+        }
     }
 
     // Update is called once per frame
@@ -176,6 +195,17 @@ public class ObjectPool : MonoBehaviour
                 if (!pooledCannonballs[i].activeInHierarchy)
                 {
                     return pooledCannonballs[i];
+                }
+            }
+            return null;
+        }
+        if (Type.Equals("Fire"))
+        {
+            for (int i = 0; i < amountFireToPool; i++)
+            {
+                if (!pooledFires[i].activeInHierarchy)
+                {
+                    return pooledFires[i];
                 }
             }
             return null;

@@ -32,6 +32,8 @@ public abstract class Enemy : MonoBehaviour
 
     private EnemyState currentState;
 
+    private Animator animator;
+
     //public float separationRadius = 0.5f; // the radius within which to apply separation
     //public float separationWeight = 0.1f; // the weight to give to separation force
     private Rigidbody2D rb2d;
@@ -53,6 +55,8 @@ public abstract class Enemy : MonoBehaviour
         diamondSpawner = gameObject.AddComponent<DiamondSpawner>();
         regenSpawner = gameObject.AddComponent<RegenSpawner>();
         TransitionToState(new EnemyChaseState(this));
+
+        animator = gameObject.GetComponent<Animator>();
     }
 
     public void TransitionToState(EnemyState newState)
@@ -75,6 +79,16 @@ public abstract class Enemy : MonoBehaviour
     public void Attack()
     {
         realTarget = GameObject.Find("King");
+
+        if (animator != null)
+        {
+            animator.SetBool("enemyRun", false);
+            if (!animator.GetBool("enemyAttack"))
+            {
+                animator.SetBool("enemyAttack", true);
+            }
+        }
+
         if (Time.time >= nextTimeToDealDamage)
         {
             Attack(realTarget);
@@ -85,6 +99,15 @@ public abstract class Enemy : MonoBehaviour
     public void Chase()
     {
         target = GameObject.FindGameObjectWithTag("Hero");
+
+        if(animator != null)
+        {
+            animator.SetBool("enemyRun", true);
+            if (!animator.GetBool("enemyAttack"))
+            {     
+                animator.SetBool("enemyAttack", false);
+            }
+        }
 
         // Enemy faces toward the main character while chasing
         if (target.transform.position.x < gameObject.transform.position.x)
