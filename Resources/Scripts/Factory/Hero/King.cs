@@ -13,6 +13,7 @@ public class King : MonoBehaviour, IHero
     public float currentHealth { get; set; }
 
     public IWeapon Weapon { get; set; }
+   
 
     void Update()
     {
@@ -34,7 +35,6 @@ public class King : MonoBehaviour, IHero
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-
         Debug.Log("Current Heath: " + currentHealth+"/" + Health + "; Loss: " + amount);
 
         if (currentHealth <= 0)

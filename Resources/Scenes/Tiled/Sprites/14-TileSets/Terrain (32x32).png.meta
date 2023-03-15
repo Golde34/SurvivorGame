@@ -632,12 +632,12 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Terrain (32x32)_9: -1480322399
-      Terrain (32x32)_1: -1000978657
+      Terrain (32x32)_4: 2072432378
       Terrain (32x32)_22: 1092125470
       Terrain (32x32)_13: 1272043804
       Terrain (32x32)_2: 41183305
       Terrain (32x32)_18: 302380403
-      Terrain (32x32)_11: -1667224115
+      Terrain (32x32)_7: 243008872
       Terrain (32x32)_5: 2113584718
       Terrain (32x32)_0: 1187061702
       Terrain (32x32)_14: -1593162975
@@ -651,9 +651,9 @@ TextureImporter:
       Terrain (32x32)_6: -1444995065
       Terrain (32x32)_12: 423375603
       Terrain (32x32)_8: -1675060336
-      Terrain (32x32)_4: 2072432378
+      Terrain (32x32)_1: -1000978657
       Terrain (32x32)_20: 1816152731
-      Terrain (32x32)_7: 243008872
+      Terrain (32x32)_11: -1667224115
       Terrain (32x32)_3: -600157464
   spritePackingTag: 
   pSDRemoveMatte: 0

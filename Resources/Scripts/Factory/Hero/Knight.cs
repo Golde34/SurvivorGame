@@ -12,6 +12,7 @@ public class Knight : MonoBehaviour, IHero
     public float Range { get; set; }
     public float currentHealth { get; set; }
     public IWeapon Weapon { get; set; }
+   
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
@@ -32,7 +33,7 @@ public class Knight : MonoBehaviour, IHero
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-
+      
         Debug.Log("Current Heath: " + currentHealth+"/" + Health + "; Loss: " + amount);
 
         if (currentHealth <= 0)

@@ -11,13 +11,17 @@ public class GameplayManager : MonoBehaviour
     Vector2 localScale;
     public LayerMask enemyLayers;
     IHero hero;
+    [SerializeField] HealBar _healBar;
 
     // Start is called before the first frame update
     void Start()
     {
+
         spawner = gameObject.AddComponent<HeroSpawner>();
         spawner.SetFactory(new KingFactory());
         hero = spawner.SpawnHero();
+        _healBar.hero = hero;
+        Debug.Log("healbar hero:" + $"{_healBar.hero.currentHealth}");
         Debug.Log("hero use: " + hero.Weapon.Name.ToString());
     }
 
