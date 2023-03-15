@@ -1,7 +1,5 @@
-﻿using System.Threading;
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SpearFactory : MonoBehaviour, IWeaponFactory
 {
@@ -15,7 +13,6 @@ public class SpearFactory : MonoBehaviour, IWeaponFactory
         SpearObj.transform.localRotation = Quaternion.identity;
 
         Spear Spear = SpearObj.AddComponent<Spear>();
-        Spear.Damage = 5;
         Spear.FitPoint = 0;
         Spear.WeaponPoint = SpearObj.transform.position;
         return Spear;

@@ -49,10 +49,11 @@ public class Knight : MonoBehaviour, IHero
         }
     }
 
-    public void UseWeapon()
+    public IWeapon UseWeapon()
     {
         IWeaponFactory factory = new SpearFactory();
-        factory.CreateWeapon(gameObject.transform);
+        IWeapon weapon = factory.CreateWeapon(gameObject.transform);
+        return weapon;
     }
 
     public void RegenHealth(float health)

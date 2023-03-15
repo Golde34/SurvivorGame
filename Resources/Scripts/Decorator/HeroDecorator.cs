@@ -9,37 +9,42 @@ public abstract class HeroDecorator : IHero
         this.hero = hero;
     }
 
-    public void Attack(Collider2D[] hitEnemies)
+    public virtual void Attack(Collider2D[] hitEnemies)
     {
         hero.Attack(hitEnemies);
     }
 
-    public void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount)
     {
         hero.TakeDamage(amount);
     }
 
-    public void UseWeapon()
+    public virtual IWeapon UseWeapon()
     {
-        hero.UseWeapon();
+        IWeapon weapon = hero.UseWeapon();
+        return weapon;
     }
 
-    public void RegenHealth(float health)
+    public virtual void RegenHealth(float health)
     {
         hero.RegenHealth(health);
     }
 
-    public void CollectDiamond(int value)
+    public virtual void CollectDiamond(int value)
     {
         hero.CollectDiamond(value);
     }
 
-    public float Health { get => hero.Health; set => hero.Health = value; }
-    public int Damage { get => hero.Damage; set => hero.Damage = value; }
-    public float currentHealth { get => hero.currentHealth; set => hero.currentHealth = value; }
-    public int Defense { get => hero.Defense; set => hero.Defense = value; }
-    public float Speed { get => hero.Speed; set => hero.Speed = value; }
-    public float DSpeed { get => hero.DSpeed; set => hero.DSpeed = value; }
-    public float Range { get => hero.Range; set => hero.Range = value; }
-    public IWeapon Weapon { get => hero.Weapon; set => hero.Weapon = value; }
+    public virtual float Health { get => hero.Health; set => hero.Health = value; }
+    public virtual int Damage
+    {
+        get { return hero.Damage; }
+        set { hero.Damage = value; }
+    }
+    public virtual float currentHealth { get => hero.currentHealth; set => hero.currentHealth = value; }
+    public virtual int Defense { get => hero.Defense; set => hero.Defense = value; }
+    public virtual float Speed { get => hero.Speed; set => hero.Speed = value; }
+    public virtual float DSpeed { get => hero.DSpeed; set => hero.DSpeed = value; }
+    public virtual float Range { get => hero.Range; set => hero.Range = value; }
+    public virtual IWeapon Weapon { get => hero.Weapon; set => hero.Weapon = value; }
 }

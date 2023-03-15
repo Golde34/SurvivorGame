@@ -21,8 +21,9 @@ public class GameplayManager : MonoBehaviour
         spawner.SetFactory(new KingFactory());
         hero = spawner.SpawnHero();
         _healBar.hero = hero;
-        Debug.Log("healbar hero:" + $"{_healBar.hero.currentHealth}");
-        Debug.Log("hero use: " + hero.Weapon.Name.ToString());
+        IWeapon weapon = hero.UseWeapon();
+        hero = new HeroWeaponDecorator(hero, weapon);
+        Debug.Log("hero Damage: " + hero.Damage);
     }
 
     // Update is called once per frame

@@ -52,12 +52,13 @@ public class King : MonoBehaviour, IHero
         }
     }
 
-    public void UseWeapon()
+    public IWeapon UseWeapon()
     {
-        this.Weapon = new Spear();
-        IWeaponFactory factory = new SpearFactory();
+        this.Weapon = new Sword();
+        IWeaponFactory factory = new SwordFactory();
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
-        factory.CreateWeapon(target.gameObject.transform);
+        IWeapon weapon = factory.CreateWeapon(target.gameObject.transform);
+        return weapon;
     }
 
     public void RegenHealth(float health)

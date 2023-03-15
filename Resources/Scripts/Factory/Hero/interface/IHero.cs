@@ -16,7 +16,7 @@ public interface IHero
 
     void TakeDamage(float amount);
 
-    void UseWeapon();
+    IWeapon UseWeapon();
 
     void RegenHealth(float health);
 
