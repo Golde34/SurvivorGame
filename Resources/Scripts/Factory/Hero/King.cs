@@ -17,7 +17,6 @@ public class King : MonoBehaviour, IHero
 
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 3;
-
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
@@ -52,12 +51,15 @@ public class King : MonoBehaviour, IHero
         }
     }
 
-    public IWeapon UseWeapon()
+    public IWeapon UseWeapon(string weaponString)
     {
-        this.Weapon = new Sword();
-        IWeaponFactory factory = new SwordFactory();
-        GameObject target = GameObject.FindGameObjectWithTag("Hero");
-        IWeapon weapon = factory.CreateWeapon(target.gameObject.transform);
+        //this.Weapon = new Sword();
+        //IWeaponFactory factory = new SwordFactory();
+        //GameObject target = GameObject.FindGameObjectWithTag("Hero");
+        //IWeapon weapon = factory.CreateWeapon(target.gameObject.transform);
+
+        CharacterStateEvent weaponSelect = new CharacterStateEvent();
+        IWeapon weapon = weaponSelect.WeaponState(weaponString, this.Weapon);
         return weapon;
     }
 

@@ -12,6 +12,7 @@ public class Knight : MonoBehaviour, IHero
     public float Range { get; set; }
     public float currentHealth { get; set; }
     public IWeapon Weapon { get; set; }
+    
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 3;
 
@@ -49,10 +50,10 @@ public class Knight : MonoBehaviour, IHero
         }
     }
 
-    public IWeapon UseWeapon()
+    public IWeapon UseWeapon(string weaponString)
     {
-        IWeaponFactory factory = new SpearFactory();
-        IWeapon weapon = factory.CreateWeapon(gameObject.transform);
+        CharacterStateEvent weaponSelect = new CharacterStateEvent();
+        IWeapon weapon = weaponSelect.WeaponState(weaponString, this.Weapon);
         return weapon;
     }
 

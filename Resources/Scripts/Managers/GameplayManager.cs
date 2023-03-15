@@ -12,18 +12,23 @@ public class GameplayManager : MonoBehaviour
     public LayerMask enemyLayers;
     IHero hero;
     [SerializeField] HealBar _healBar;
+    string heroString = "King";
+    string weaponString = "Spear";
 
     // Start is called before the first frame update
     void Start()
     {
-
+        CharacterStateEvent characterEvent = new CharacterStateEvent();
         spawner = gameObject.AddComponent<HeroSpawner>();
-        spawner.SetFactory(new KingFactory());
-        hero = spawner.SpawnHero();
-        _healBar.hero = hero;
-        IWeapon weapon = hero.UseWeapon();
+        hero = characterEvent.HeroState(spawner, heroString);
+        //spawner.SetFactory(new KingFactory());
+        //hero = spawner.SpawnHero();
+        IWeapon weapon = hero.UseWeapon(weaponString);
         hero = new HeroWeaponDecorator(hero, weapon);
         Debug.Log("hero Damage: " + hero.Damage);
+
+        //GUI 
+        _healBar.hero = hero;
     }
 
     // Update is called once per frame
