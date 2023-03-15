@@ -83,10 +83,7 @@ public abstract class Enemy : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("enemyRun", false);
-            if (!animator.GetBool("enemyAttack"))
-            {
-                animator.SetBool("enemyAttack", true);
-            }
+            animator.SetBool("enemyAttack", true);
         }
 
         if (Time.time >= nextTimeToDealDamage)
@@ -103,10 +100,7 @@ public abstract class Enemy : MonoBehaviour
         if(animator != null)
         {
             animator.SetBool("enemyRun", true);
-            if (!animator.GetBool("enemyAttack"))
-            {     
-                animator.SetBool("enemyAttack", false);
-            }
+            animator.SetBool("enemyAttack", false);
         }
 
         // Enemy faces toward the main character while chasing
