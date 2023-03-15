@@ -13,7 +13,7 @@ public class KnightFactory : IHeroFactory
         knight.Defense = 15;
         knight.Speed = 1;
         knight.DSpeed = 1;
-        knight.Range = 0.2f;
+        knight.Range = 0.8f;
         return knight;
     }
 }

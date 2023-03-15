@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7666226217815414457}
   - component: {fileID: -5235274761964151687}
+  - component: {fileID: -2244897209321902425}
   m_Layer: 0
   m_Name: HeroKing
   m_TagString: Hero
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2244897209321902425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781982637734854721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad61b255a3cdaf4f8ebf8d8b1d6d2e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenEnemyAttack: 3

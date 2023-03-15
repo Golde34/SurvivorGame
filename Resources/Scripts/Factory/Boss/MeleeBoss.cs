@@ -11,7 +11,7 @@ public class MeleeBoss : Boss
         // Initiates the variant's parameters
 
         this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
-        this.health = 10 * Mathf.Pow(level, 0.25f) * 3;
+        this.health = 10 * Mathf.Pow(level, 0.25f) * 4;
         this.range = 0.3f;
         currentHealth = health;
     }
