@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd967875fc522347af1e4ad819e93d8, type: 3}
+  m_Name: New Chracter Database
+  m_EditorClassIdentifier: 
+  characters:
+  - characterName: Kings
+    characterSprite: {fileID: 21300000, guid: 06ae07780eebdbf4a83f332ae6cdf3ca, type: 3}
+  - characterName: Knight
+    characterSprite: {fileID: 21300000, guid: 6f977468bcb2b054aaeb577525dffbbc, type: 3}
+  - characterName: Wizzard
+    characterSprite: {fileID: 21300000, guid: cbd3a887fd285a5488b4331c41981fd5, type: 3}
