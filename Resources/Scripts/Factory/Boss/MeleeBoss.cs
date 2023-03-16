@@ -12,7 +12,7 @@ public class MeleeBoss : Boss
 
         this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
         this.health = 10 * Mathf.Pow(level, 0.25f) * 4;
-        this.range = 0.3f;
+        this.range = 0.5f;
         currentHealth = health;
     }
 
@@ -29,7 +29,7 @@ public class MeleeBoss : Boss
         }
         if (canShot)
         {
-            target.GetComponent<IHero>().TakeDamage(20);
+            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(20);
 
             // Shoot
             canShot = false;

@@ -18,10 +18,11 @@ public class Knight : MonoBehaviour, IHero
     public Vector2 speed1 = new Vector2(0, 2f);
     public Vector2 speed2 = new Vector2(2f, 0);
     Vector2 localScale;
+    GameObject target;
 
     void Update()
     {
-        GameObject target = GameObject.FindGameObjectWithTag("Hero");
+        target = GameObject.FindGameObjectWithTag("Hero");
         gameObject.transform.position = target.transform.position;
     }
 
@@ -29,7 +30,6 @@ public class Knight : MonoBehaviour, IHero
     {
         if (Time.time >= nextTimeToDealDamage)
         {
-            Debug.Log("Attack at: " + Time.time);
             foreach (Collider2D enemy in hitEnemies)
             {
                 if (enemy.tag.Equals("Enemy"))
@@ -97,20 +97,19 @@ public class Knight : MonoBehaviour, IHero
 
     void GoDown()
     {
-        this.gameObject.transform.Translate(-speed1 * Time.deltaTime);
+        target.transform.Translate(-speed1 * Time.deltaTime);
     }
 
     void GoUp()
     {
-        this.gameObject.transform.Translate(speed1 * Time.deltaTime);
+        target.transform.Translate(speed1 * Time.deltaTime);
     }
 
     void GoRight()
     {
-        this.gameObject.transform.Translate(speed2 * Time.deltaTime);
+        target.transform.Translate(speed2 * Time.deltaTime);
 
         localScale = gameObject.transform.localScale;
-        Debug.Log("localscale right:" + localScale);
         if (localScale.x < 0)
         {
             localScale.x *= -1;
@@ -119,10 +118,8 @@ public class Knight : MonoBehaviour, IHero
     }
     void GoLeft()
     {
-        this.gameObject.transform.Translate(-speed2 * Time.deltaTime);
+        target.transform.Translate(-speed2 * Time.deltaTime);
         localScale = gameObject.transform.localScale;
-        Debug.Log("localscale left:" + localScale);
-
         if (localScale.x > 0)
         {
             localScale.x *= -1;

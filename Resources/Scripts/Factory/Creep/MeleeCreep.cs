@@ -12,7 +12,7 @@ public class MeleeCreep : Creep
         this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
 
         this.health = 10 * Mathf.Pow(level, 0.25f);
-        this.range = 0.2f;
+        this.range = 0.4f;
         this.currentHealth = health;
     }
 
@@ -29,7 +29,7 @@ public class MeleeCreep : Creep
         }
         if (canShot)
         {
-            target.GetComponent<IHero>().TakeDamage(10);
+            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(10);
 
             // Shoot
             canShot = false;

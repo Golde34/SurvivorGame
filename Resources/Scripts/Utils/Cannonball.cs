@@ -31,26 +31,32 @@ public class Cannonball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer.Finished || Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position) <= 0.2f)
+        if (GameObject.FindGameObjectWithTag("Hero") != null)
         {
-            Explode();
-        }
+            if (timer.Finished || Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position) <= 0.2f)
+            {
+                Explode();
+            }
 
-        if (Destination != null)
-        {
-            transform.Translate((Destination - transform.position) * Time.deltaTime * 2);
+            if (Destination != null)
+            {
+                transform.Translate((Destination - transform.position) * Time.deltaTime * 2);
+            }
         }
     }
 
     private void Explode()
     {
-        if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position) <= 0.2f)
+        if (GameObject.FindGameObjectWithTag("Hero") != null)
         {
-            if(GameObject.FindGameObjectWithTag("Hero") != null)
+            if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position) <= 0.2f)
             {
-                GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(15);
+                if (GameObject.FindGameObjectWithTag("Hero") != null)
+                {
+                    GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(15);
+                }
             }
+            gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
     }
 }

@@ -97,41 +97,43 @@ public abstract class Enemy : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Hero");
 
-        if(animator != null)
+        if(target != null)
         {
-            animator.SetBool("enemyRun", true);
-            animator.SetBool("enemyAttack", false);
-        }
-
-        // Enemy faces toward the main character while chasing
-        if (target.transform.position.x < gameObject.transform.position.x)
-        {
-            localScale = gameObject.transform.localScale;
-            if (localScale.x > 0)
+            if (animator != null)
             {
-                localScale.x *= -1;
-                this.gameObject.transform.localScale = localScale;
+                animator.SetBool("enemyRun", true);
+                animator.SetBool("enemyAttack", false);
             }
-        }
-        else if (target.transform.position.x > gameObject.transform.position.x)
-        {
-            localScale = gameObject.transform.localScale;
-            if (localScale.x < 0)
-            {
-                localScale.x *= -1;
-                this.gameObject.transform.localScale = localScale;
-            }
-        }
 
-        transform.Translate((target.transform.position - transform.position) * Time.deltaTime * speed * 0.2f);
+            // Enemy faces toward the main character while chasing
+            if (target.transform.position.x < gameObject.transform.position.x)
+            {
+                localScale = gameObject.transform.localScale;
+                if (localScale.x > 0)
+                {
+                    localScale.x *= -1;
+                    this.gameObject.transform.localScale = localScale;
+                }
+            }
+            else if (target.transform.position.x > gameObject.transform.position.x)
+            {
+                localScale = gameObject.transform.localScale;
+                if (localScale.x < 0)
+                {
+                    localScale.x *= -1;
+                    this.gameObject.transform.localScale = localScale;
+                }
+            }
+
+            transform.Translate((target.transform.position - transform.position) * Time.deltaTime * speed * 0.2f);
+        }
     }
 
     public bool IsPlayerInRange()
     {
-        if (GameObject.FindGameObjectWithTag("Hero") != null && GameObject.Find("King") != null)
+        if (GameObject.FindGameObjectWithTag("Hero") != null)
         {
             target = GameObject.FindGameObjectWithTag("Hero");
-            realTarget = GameObject.Find("King");
 
             if (Vector2.Distance(transform.position, target.transform.position) <= range)
             {

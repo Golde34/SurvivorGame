@@ -7,7 +7,7 @@ public class KingFactory : MonoBehaviour, IHeroFactory
     {
         var kingGameObj = Resources.Load("Prefabs/HeroKing") as GameObject;
         var kingObj = Instantiate(kingGameObj);
-        King king = kingObj.AddComponent<King>();
+        King king = kingObj.GetComponent<King>();
         king.Health = 180;
         king.currentHealth = king.Health;
         king.Damage = 20;

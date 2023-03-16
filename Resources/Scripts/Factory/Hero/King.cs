@@ -32,7 +32,6 @@ public class King : MonoBehaviour, IHero
     {
         if (Time.time >= nextTimeToDealDamage)
         {
-            Debug.Log("Attack at: " + Time.time);
             foreach (Collider2D enemy in hitEnemies)
             {
                 if (enemy.tag.Equals("Enemy"))
@@ -118,7 +117,6 @@ public class King : MonoBehaviour, IHero
         target.transform.Translate(speed2 * Time.deltaTime);
 
         localScale = gameObject.transform.localScale;
-        Debug.Log("localscale right:" + localScale);
         if (localScale.x < 0)
         {
             localScale.x *= -1;
@@ -129,8 +127,6 @@ public class King : MonoBehaviour, IHero
     {
         target.transform.Translate(-speed2 * Time.deltaTime);
         localScale = gameObject.transform.localScale;
-        Debug.Log("localscale left:" + localScale);
-
         if (localScale.x > 0)
         {
             localScale.x *= -1;
