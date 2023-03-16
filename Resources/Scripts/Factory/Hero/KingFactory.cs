@@ -1,11 +1,12 @@
 ﻿using System.Threading;
 using UnityEngine;
 
-public class KingFactory : IHeroFactory
+public class KingFactory : MonoBehaviour, IHeroFactory
 {
     public IHero CreateHero()
     {
-        GameObject kingObj = new GameObject("King");
+        var kingGameObj = Resources.Load("Prefabs/HeroKing") as GameObject;
+        var kingObj = Instantiate(kingGameObj);
         King king = kingObj.AddComponent<King>();
         king.Health = 180;
         king.currentHealth = king.Health;
@@ -14,6 +15,7 @@ public class KingFactory : IHeroFactory
         king.Speed = 1;
         king.DSpeed = 1;
         king.Range = 0.5f;
+
         return king;
     }
 }

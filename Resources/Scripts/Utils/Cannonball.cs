@@ -46,9 +46,9 @@ public class Cannonball : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Hero").transform.position) <= 0.2f)
         {
-            if(GameObject.Find("King") != null)
+            if(GameObject.FindGameObjectWithTag("Hero") != null)
             {
-                GameObject.Find("King").GetComponent<IHero>().TakeDamage(15);
+                GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(15);
             }
         }
         gameObject.SetActive(false);

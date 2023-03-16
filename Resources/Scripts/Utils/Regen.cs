@@ -22,7 +22,7 @@ public class Regen : MonoBehaviour
             /*
              * Player collect the regen, then destroy the diamond
              */
-            GameObject.Find("King").GetComponent<IHero>().RegenHealth(15);
+            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().RegenHealth(15);
 
             Destroy(gameObject);
         }
@@ -34,10 +34,9 @@ public class Regen : MonoBehaviour
 
     public bool IsPlayerInRange()
     {
-        if (GameObject.FindGameObjectWithTag("Hero") != null && GameObject.Find("King") != null)
+        if (GameObject.FindGameObjectWithTag("Hero") != null)
         {
             var target = GameObject.FindGameObjectWithTag("Hero");
-            var realTarget = GameObject.Find("King");
 
             if (Vector2.Distance(transform.position, target.transform.position) <= 0.1f)
             {

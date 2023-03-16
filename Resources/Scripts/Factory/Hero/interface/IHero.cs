@@ -21,4 +21,6 @@ public interface IHero
     void RegenHealth(float health);
 
     void CollectDiamond(int value);
+
+    void Move();
 }

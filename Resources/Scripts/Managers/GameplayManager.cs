@@ -31,11 +31,10 @@ public class GameplayManager : MonoBehaviour
             Load();
         }
         ChooseCharacter(selectedoption);
-         CharacterStateEvent characterEvent = new CharacterStateEvent();
+        CharacterStateEvent characterEvent = new CharacterStateEvent();
         spawner = gameObject.AddComponent<HeroSpawner>();
         hero = characterEvent.HeroState(spawner, heroString);
-        //spawner.SetFactory(new KingFactory());
-        //hero = spawner.SpawnHero();
+
         IWeapon weapon = hero.UseWeapon(weaponString);
         hero = new HeroWeaponDecorator(hero, weapon);
         Debug.Log("hero Damage: " + hero.Damage);
@@ -48,22 +47,7 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            GoLeft(target);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            GoRight(target);
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            GoUp(target);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            GoDown(target);
-        }
+        hero.Move();
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, hero.Range, LayerMask.GetMask("Enemy"));
         if (hitEnemies != null && hitEnemies.Length > 0)
@@ -106,6 +90,7 @@ public class GameplayManager : MonoBehaviour
         gameObject.transform.Translate(speed2 * Time.deltaTime);
 
         localScale = gameObject.transform.localScale;
+        Debug.Log("localscale right:" + localScale);
         if (localScale.x < 0)
         {
             localScale.x *= -1;
@@ -116,6 +101,8 @@ public class GameplayManager : MonoBehaviour
     {
         gameObject.transform.Translate(-speed2 * Time.deltaTime);
         localScale = gameObject.transform.localScale;
+        Debug.Log("localscale left:" + localScale);
+
         if (localScale.x > 0)
         {
             localScale.x *= -1;

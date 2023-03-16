@@ -34,10 +34,9 @@ public class Diamond : MonoBehaviour
 
     public bool IsPlayerInRange()
     {
-        if (GameObject.FindGameObjectWithTag("Hero") != null && GameObject.Find("King") != null)
+        if (GameObject.FindGameObjectWithTag("Hero") != null)
         {
             var target = GameObject.FindGameObjectWithTag("Hero");
-            var realTarget = GameObject.Find("King");
 
             if (Vector2.Distance(transform.position, target.transform.position) <= 0.1f)
             {

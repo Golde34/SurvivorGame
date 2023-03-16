@@ -78,7 +78,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void Attack()
     {
-        realTarget = GameObject.Find("King");
+        target = GameObject.FindGameObjectWithTag("Hero");
 
         if (animator != null)
         {
@@ -88,7 +88,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (Time.time >= nextTimeToDealDamage)
         {
-            Attack(realTarget);
+            Attack(target);
             nextTimeToDealDamage = Time.time + timeBetweenEnemyAttack;
         }
     }

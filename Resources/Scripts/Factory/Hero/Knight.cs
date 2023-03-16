@@ -15,6 +15,9 @@ public class Knight : MonoBehaviour, IHero
     
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 3;
+    public Vector2 speed1 = new Vector2(0, 2f);
+    public Vector2 speed2 = new Vector2(2f, 0);
+    Vector2 localScale;
 
     void Update()
     {
@@ -70,5 +73,60 @@ public class Knight : MonoBehaviour, IHero
     public void CollectDiamond(int value)
     {
         Debug.Log("Gain Diamond");
+    }
+
+    public void Move()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            GoLeft();
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            GoRight();
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            GoUp();
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            GoDown();
+        }
+    }
+
+    void GoDown()
+    {
+        this.gameObject.transform.Translate(-speed1 * Time.deltaTime);
+    }
+
+    void GoUp()
+    {
+        this.gameObject.transform.Translate(speed1 * Time.deltaTime);
+    }
+
+    void GoRight()
+    {
+        this.gameObject.transform.Translate(speed2 * Time.deltaTime);
+
+        localScale = gameObject.transform.localScale;
+        Debug.Log("localscale right:" + localScale);
+        if (localScale.x < 0)
+        {
+            localScale.x *= -1;
+            gameObject.transform.localScale = localScale;
+        }
+    }
+    void GoLeft()
+    {
+        this.gameObject.transform.Translate(-speed2 * Time.deltaTime);
+        localScale = gameObject.transform.localScale;
+        Debug.Log("localscale left:" + localScale);
+
+        if (localScale.x > 0)
+        {
+            localScale.x *= -1;
+            gameObject.transform.localScale = localScale;
+        }
     }
 }
