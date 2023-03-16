@@ -12,13 +12,26 @@ public class GameplayManager : MonoBehaviour
     public LayerMask enemyLayers;
     IHero hero;
     [SerializeField] HealBar _healBar;
+
+    public ChracterDatabase characterDB;
+    private int selectedoption = 0;
+
     string heroString = "King";
     string weaponString = "Spear";
 
     // Start is called before the first frame update
     void Start()
     {
-        CharacterStateEvent characterEvent = new CharacterStateEvent();
+        if (!PlayerPrefs.HasKey("selectedOption"))
+        {
+            selectedoption = 0;
+        }
+        else
+        {
+            Load();
+        }
+        ChooseCharacter(selectedoption);
+         CharacterStateEvent characterEvent = new CharacterStateEvent();
         spawner = gameObject.AddComponent<HeroSpawner>();
         hero = characterEvent.HeroState(spawner, heroString);
         //spawner.SetFactory(new KingFactory());
@@ -58,6 +71,25 @@ public class GameplayManager : MonoBehaviour
             hero.Attack(hitEnemies);
         }
     }
+
+    private void Load()
+    {
+        selectedoption = PlayerPrefs.GetInt("selectedOption");
+    }
+
+    private void ChooseCharacter(int selectedoption)
+    {
+        if (selectedoption == 0)
+        {
+            heroString = "King";
+        }
+        if (selectedoption == 1)
+        {
+            heroString = "Knight";
+        }
+    
+    }
+
 
     void GoDown(GameObject gameObject)
     {
