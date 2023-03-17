@@ -17,7 +17,7 @@ public class GameplayManager : MonoBehaviour
     private int selectedoption = 0;
 
     string heroString = "King";
-    string weaponString = "Spear";
+    string weaponString = "Sword";
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +31,16 @@ public class GameplayManager : MonoBehaviour
             Load();
         }
         ChooseCharacter(selectedoption);
+
         CharacterStateEvent characterEvent = new CharacterStateEvent();
         spawner = gameObject.AddComponent<HeroSpawner>();
         hero = characterEvent.HeroState(spawner, heroString);
 
-        IWeapon weapon = hero.UseWeapon(weaponString);
+        IWeapon weapon = characterEvent.WeaponState(weaponString);
+        hero.UseWeapon(weaponString);
+
+        //Decorate
         hero = new HeroWeaponDecorator(hero, weapon);
-        Debug.Log("hero Damage: " + hero.Damage);
 
         //GUI 
         _healBar.hero = hero;

@@ -13,5 +13,6 @@ public interface IWeapon
     public void Attack()
     {
         // Attack here
+
     }
 }

@@ -10,7 +10,7 @@ public class SpearFactory : MonoBehaviour, IWeaponFactory
         var SpearObj = Instantiate(SpearGameObj.transform);
         SpearObj.transform.parent = heroTransform;
         SpearObj.transform.localPosition = new Vector3(0.2f, 0.1f, 1.0f);
-        SpearObj.transform.localRotation = Quaternion.identity;
+        SpearObj.transform.localRotation = Quaternion.Euler(new Vector3 (0,0,315));
 
         Spear Spear = SpearObj.AddComponent<Spear>();
         Spear.FitPoint = 0;

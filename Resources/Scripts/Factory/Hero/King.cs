@@ -1,5 +1,6 @@
 ﻿using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class King : MonoBehaviour, IHero
@@ -13,7 +14,6 @@ public class King : MonoBehaviour, IHero
     public float currentHealth { get; set; }
 
     public IWeapon Weapon { get; set; }
-   
 
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 3;
@@ -36,10 +36,11 @@ public class King : MonoBehaviour, IHero
             {
                 if (enemy.tag.Equals("Enemy"))
                 {
+                    Debug.Log(Weapon.Damage);   
                     enemy.GetComponent<Enemy>().TakeDamage(Damage);
                 }
             }
-            nextTimeToDealDamage = Time.time + timeBetweenEnemyAttack;
+            nextTimeToDealDamage = Time.time + DSpeed;
         }
     }
 
@@ -50,21 +51,16 @@ public class King : MonoBehaviour, IHero
 
         if (currentHealth <= 0)
         {
+            //FIX BUG
             Time.timeScale = 0;
             gameObject.SetActive(false);
         }
     }
 
-    public IWeapon UseWeapon(string weaponString)
+    public void UseWeapon(string weaponString)
     {
-        //this.Weapon = new Sword();
-        //IWeaponFactory factory = new SwordFactory();
-        //GameObject target = GameObject.FindGameObjectWithTag("Hero");
-        //IWeapon weapon = factory.CreateWeapon(target.gameObject.transform);
-
-        CharacterStateEvent weaponSelect = new CharacterStateEvent();
-        IWeapon weapon = weaponSelect.WeaponState(weaponString, this.Weapon);
-        return weapon;
+        //CharacterStateEvent weaponSelect = new CharacterStateEvent();
+        //Weapon = weaponSelect.ChooseWeapon(weaponString, Weapon);
     }
 
     public void RegenHealth(float health)

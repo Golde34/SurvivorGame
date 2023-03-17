@@ -13,7 +13,7 @@ public class KingFactory : MonoBehaviour, IHeroFactory
         king.Damage = 20;
         king.Defense = 15;
         king.Speed = 1;
-        king.DSpeed = 1;
+        king.DSpeed = 2;
         king.Range = 0.5f;
 
         return king;

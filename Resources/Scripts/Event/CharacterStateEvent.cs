@@ -22,7 +22,7 @@ public class CharacterStateEvent
         }
     }
 
-    public IWeapon WeaponState(string weaponString, IWeapon _weapon)
+    public IWeapon WeaponState(string weaponString)
     {
         IWeaponFactory factory;
         GameObject target;
@@ -30,23 +30,36 @@ public class CharacterStateEvent
         switch (weaponString)
         {
             case "Sword":
-                _weapon = new Sword();
                 factory = new SwordFactory();
                 target = GameObject.FindGameObjectWithTag("Hero");
                 weapon = factory.CreateWeapon(target.gameObject.transform);
                 return weapon;
             case "Spear":
-                _weapon = new Spear();
                 factory = new SpearFactory();
                 target = GameObject.FindGameObjectWithTag("Hero");
                 weapon = factory.CreateWeapon(target.gameObject.transform);
                 return weapon;
             default:
-                _weapon = new Sword();
                 factory = new SwordFactory();
                 target = GameObject.FindGameObjectWithTag("Hero");
                 weapon = factory.CreateWeapon(target.gameObject.transform);
                 return weapon;
+        }
+    }
+
+    public IWeapon ChooseWeapon(string weaponString, IWeapon _weapon)
+    {
+        switch (weaponString)
+        {
+            case "Sword":
+                _weapon = new Sword();
+                return _weapon;
+            case "Spear":
+                _weapon = new Spear();
+                return _weapon;
+            default:
+                _weapon = new Sword();
+                return _weapon;
         }
     }
 }

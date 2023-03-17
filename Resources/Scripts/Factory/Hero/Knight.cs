@@ -53,11 +53,10 @@ public class Knight : MonoBehaviour, IHero
         }
     }
 
-    public IWeapon UseWeapon(string weaponString)
+    public void UseWeapon(string weaponString)
     {
         CharacterStateEvent weaponSelect = new CharacterStateEvent();
-        IWeapon weapon = weaponSelect.WeaponState(weaponString, this.Weapon);
-        return weapon;
+        weaponSelect.ChooseWeapon(weaponString, this.Weapon);
     }
 
     public void RegenHealth(float health)

@@ -10,7 +10,7 @@ public class SwordFactory : MonoBehaviour, IWeaponFactory
         var SwordObj = Instantiate(SwordGameObj.transform);
         SwordObj.transform.parent = heroTransform;
         SwordObj.transform.localPosition = new Vector3(0.2f, 0.1f, 1.0f);
-        SwordObj.transform.localRotation = Quaternion.identity;
+        SwordObj.transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
 
         Sword Sword = SwordObj.AddComponent<Sword>();
         Sword.FitPoint = 0;

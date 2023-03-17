@@ -19,10 +19,9 @@ public abstract class HeroDecorator : IHero
         hero.TakeDamage(amount);
     }
 
-    public virtual IWeapon UseWeapon(string weaponString)
+    public virtual void UseWeapon(string weaponString)
     {
-        IWeapon weapon = hero.UseWeapon(weaponString);
-        return weapon;
+        hero.UseWeapon(weaponString);
     }
 
     public virtual void RegenHealth(float health)

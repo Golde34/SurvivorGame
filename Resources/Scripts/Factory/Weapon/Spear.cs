@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static WaveSpawner;
 
 public class Spear : MonoBehaviour, IWeapon
 {
@@ -9,5 +12,13 @@ public class Spear : MonoBehaviour, IWeapon
 
     public void Attack()
     {
+        StartCoroutine(MoveBackAndForth());
+    }
+
+    IEnumerator MoveBackAndForth()
+    {
+        gameObject.transform.localPosition = new Vector3(0.5f, 0.1f, 1.0f);
+        yield return new WaitForSeconds(0.3f);
+        gameObject.transform.localPosition = new Vector3(0.2f, 0.1f, 1.0f);
     }
 }
