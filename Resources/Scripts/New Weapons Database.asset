@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b78438ee3d31a24cbba82e46a440343, type: 3}
+  m_Name: New Weapons Database
+  m_EditorClassIdentifier: 
+  weapons:
+  - characterName: Sword
+    characterSprite: {fileID: 21300000, guid: 262bd80ccafc1b44aaf5b62eb22eca4e, type: 3}
+  - characterName: Hammer
+    characterSprite: {fileID: 21300000, guid: 8e5b2ee07d1600645ba4fbf8c987241a, type: 3}
+  - characterName: Spear
+    characterSprite: {fileID: 21300000, guid: 817e9a6bead65614d93676c9cbe42483, type: 3}
