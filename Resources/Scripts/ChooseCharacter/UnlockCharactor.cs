@@ -19,9 +19,10 @@ public class UnlockCharactor : MonoBehaviour
     public void unlockCharactor()
     {
         var goldCount = Convert.ToInt32(gold.text);
-        if(goldCount >= 100)
+        var unLock = transform.GetChild(1).gameObject;
+        if(!(unLock.active == false))
+        if (goldCount >= 100)
         {
-            var unLock = transform.GetChild(1).gameObject;
             unLock.SetActive(false);
             goldCount = goldCount - 100;
             gold.text = goldCount.ToString();
