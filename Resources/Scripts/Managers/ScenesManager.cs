@@ -16,14 +16,20 @@ public class ScenesManager : MonoBehaviour
     {
         MainMenu, 
         ChooseCharacter,
+        UnlockCharacter,
         Level1,
+
     }
 
     public void LoadScene( Scene scene)
     {
         SceneManager.LoadScene(scene.ToString());
     }
-    
+    public void LoadUnlockCharacter()
+    {
+        SceneManager.LoadScene(Scene.UnlockCharacter.ToString());
+    }
+
     public void LoadNewGame()
     {
         SceneManager.LoadScene(Scene.Level1.ToString());

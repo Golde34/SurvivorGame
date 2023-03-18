@@ -583,6 +583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chooseCharactor: {fileID: 2002168023}
+  _unlockCharacter: {fileID: 924201576}
+  _NewGame: {fileID: 658679815}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
