@@ -16,8 +16,8 @@ public class GameplayManager : MonoBehaviour
     public ChracterDatabase characterDB;
     private int selectedoption = 0;
 
-    string heroString = "King";
-    string weaponString = "Sword";
+    private string heroString;
+    private string weaponString;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +32,14 @@ public class GameplayManager : MonoBehaviour
         }
         ChooseCharacter(selectedoption);
 
+        heroString = "King";
+        weaponString = "Sword";
+
         CharacterStateEvent characterEvent = new CharacterStateEvent();
         spawner = gameObject.AddComponent<HeroSpawner>();
         hero = characterEvent.HeroState(spawner, heroString);
 
         IWeapon weapon = characterEvent.WeaponState(weaponString);
-        hero.UseWeapon(weaponString);
 
         //Decorate
         hero = new HeroWeaponDecorator(hero, weapon);

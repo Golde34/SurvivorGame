@@ -1,5 +1,6 @@
 ﻿using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Knight : MonoBehaviour, IHero
@@ -11,8 +12,9 @@ public class Knight : MonoBehaviour, IHero
     public float DSpeed { get; set; }
     public float Range { get; set; }
     public float currentHealth { get; set; }
+
     public IWeapon Weapon { get; set; }
-    
+
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 3;
     public Vector2 speed1 = new Vector2(0, 2f);
@@ -34,29 +36,26 @@ public class Knight : MonoBehaviour, IHero
             {
                 if (enemy.tag.Equals("Enemy"))
                 {
+                    Debug.Log(Weapon.Damage);
+                    currentHealth += 2;
                     enemy.GetComponent<Enemy>().TakeDamage(Damage);
                 }
             }
-            nextTimeToDealDamage = Time.time + timeBetweenEnemyAttack;
+            nextTimeToDealDamage = Time.time + DSpeed;
         }
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-      
-        Debug.Log("Current Heath: " + currentHealth+"/" + Health + "; Loss: " + amount);
+        Debug.Log("Current Heath: " + currentHealth + "/" + Health + "; Loss: " + amount);
 
         if (currentHealth <= 0)
         {
+            //FIX BUG
+            Time.timeScale = 0;
             gameObject.SetActive(false);
         }
-    }
-
-    public void UseWeapon(string weaponString)
-    {
-        CharacterStateEvent weaponSelect = new CharacterStateEvent();
-        weaponSelect.ChooseWeapon(weaponString, this.Weapon);
     }
 
     public void RegenHealth(float health)

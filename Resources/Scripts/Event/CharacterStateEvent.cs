@@ -8,14 +8,17 @@ public class CharacterStateEvent
         switch (heroString)
         {
             case "King":
+                Debug.Log("King");
                 spawner.SetFactory(new KingFactory());
                 hero = spawner.SpawnHero();
                 return hero;
             case "Knight":
+                Debug.Log("Knight");
                 spawner.SetFactory(new KnightFactory());
                 hero = spawner.SpawnHero();
                 return hero;
             default:
+                Debug.Log("Default");
                 spawner.SetFactory(new KingFactory());
                 hero = spawner.SpawnHero();
                 return hero;

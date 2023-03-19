@@ -36,7 +36,6 @@ public class King : MonoBehaviour, IHero
             {
                 if (enemy.tag.Equals("Enemy"))
                 {
-                    Debug.Log(Weapon.Damage);   
                     enemy.GetComponent<Enemy>().TakeDamage(Damage);
                 }
             }
@@ -55,12 +54,6 @@ public class King : MonoBehaviour, IHero
             Time.timeScale = 0;
             gameObject.SetActive(false);
         }
-    }
-
-    public void UseWeapon(string weaponString)
-    {
-        //CharacterStateEvent weaponSelect = new CharacterStateEvent();
-        //Weapon = weaponSelect.ChooseWeapon(weaponString, Weapon);
     }
 
     public void RegenHealth(float health)

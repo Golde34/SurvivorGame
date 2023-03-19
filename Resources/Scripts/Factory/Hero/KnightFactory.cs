@@ -1,19 +1,20 @@
 ﻿using System.Threading;
 using UnityEngine;
 
-public class KnightFactory : IHeroFactory
+public class KnightFactory : MonoBehaviour, IHeroFactory
 {
     public IHero CreateHero()
     {
-        GameObject knightObj = new GameObject("Knight");
-        Knight knight = knightObj.AddComponent<Knight>();
-        knight.Health = 180;
+        var knightGameObj = Resources.Load("Prefabs/HeroKnight") as GameObject;
+        var knightObj = Instantiate(knightGameObj);
+        Knight knight = knightObj.GetComponent<Knight>();
+        knight.Health = 150;
         knight.currentHealth = knight.Health;
-        knight.Damage = 20;
-        knight.Defense = 15;
-        knight.Speed = 1;
+        knight.Damage = 25;
+        knight.Defense = 10;
+        knight.Speed = 1.8f;
         knight.DSpeed = 1;
-        knight.Range = 0.8f;
+        knight.Range = 0.6f;
         return knight;
     }
 }
