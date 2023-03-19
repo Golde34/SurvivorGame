@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class Knight : MonoBehaviour, IHero
     public Vector2 speed2 = new Vector2(2f, 0);
     Vector2 localScale;
     GameObject target;
+    int diamonds = 0;
 
     void Update()
     {
@@ -70,7 +72,14 @@ public class Knight : MonoBehaviour, IHero
 
     public void CollectDiamond(int value)
     {
-        Debug.Log("Gain Diamond");
+        diamonds += value;
+        Debug.Log("Gain Diamond: " + diamonds);
+        SaveTreasure(diamonds);
+    }
+
+    public int UseDiamonds()
+    {
+        return diamonds;
     }
 
     public void Move()
@@ -123,5 +132,36 @@ public class Knight : MonoBehaviour, IHero
             localScale.x *= -1;
             gameObject.transform.localScale = localScale;
         }
+    }
+
+    public int SaveTreasure(int scoreCount)
+    {
+        // Load total treasure
+        var jsonTextFile = Resources.Load<TextAsset>("Text/playerTreasure");
+        Treasure treasure = JsonUtility.FromJson<Treasure>(jsonTextFile.text);
+        // Calculate total treasure
+        int currentTreasure = treasure.totalTreasure;
+        int total = currentTreasure + scoreCount;
+        treasure.TotalTreasure = total;
+        // Save treasure
+        var savedJson = JsonUtility.ToJson(treasure);
+        WriteToFile("Resources/Text/playerTreasure.json", savedJson);
+        return total;
+    }
+
+    private void WriteToFile(string fileName, string json)
+    {
+        string path = GetFilePath(fileName);
+        FileStream fileStream = new FileStream(path, FileMode.Create);
+
+        using (StreamWriter writer = new StreamWriter(fileStream))
+        {
+            writer.Write(json);
+        }
+    }
+
+    private string GetFilePath(string fileName)
+    {
+        return Application.dataPath + "/" + fileName;
     }
 }

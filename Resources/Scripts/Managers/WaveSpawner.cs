@@ -81,7 +81,8 @@ public class WaveSpawner : MonoBehaviour
     void WaveComplete()
     {
         Debug.Log("Wave " + nextWave + " complete");
-
+        int diamonds = GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().UseDiamonds();
+        Debug.Log("You got: " + diamonds + " diamonds");
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
         nextWave++;

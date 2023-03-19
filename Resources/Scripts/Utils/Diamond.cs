@@ -23,7 +23,7 @@ public class Diamond : MonoBehaviour
             /*
              * Player collect the diamond, then destroy the diamond
              */
-
+            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().CollectDiamond(1);
             Destroy(gameObject);
         }
         if (timer.Finished)
