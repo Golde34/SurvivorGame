@@ -62,5 +62,6 @@ public class WeaponsManager : MonoBehaviour
     private void Save()
     {
         PlayerPrefs.SetInt("selectedWeaponsOption", selectedoption);
+        Debug.Log(selectedoption.ToString());
     }
 }
