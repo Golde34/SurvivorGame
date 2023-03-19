@@ -14,7 +14,9 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] HealBar _healBar;
 
     public ChracterDatabase characterDB;
+    public WeaponsDatabase weaponDB;
     private int selectedoption = 0;
+    private int selecteWeaponsOption = 0;
 
     private string heroString;
     private string weaponString;
@@ -30,10 +32,21 @@ public class GameplayManager : MonoBehaviour
         {
             Load();
         }
+
         ChooseCharacter(selectedoption);
 
-        heroString = "King";
-        weaponString = "Sword";
+        if (!PlayerPrefs.HasKey("selectedWeaponsOption"))
+        {
+            selecteWeaponsOption = 0;
+        }
+        else
+        {
+            LoadWeapon();
+        }
+        ChooseWeapon(selecteWeaponsOption);
+        Debug.Log(selecteWeaponsOption);
+        //heroString = "King";
+        //weaponString = "Sword";
 
         CharacterStateEvent characterEvent = new CharacterStateEvent();
         spawner = gameObject.AddComponent<HeroSpawner>();
@@ -65,7 +78,10 @@ public class GameplayManager : MonoBehaviour
     {
         selectedoption = PlayerPrefs.GetInt("selectedOption");
     }
-
+    private void LoadWeapon()
+    {
+        selecteWeaponsOption = PlayerPrefs.GetInt("selectedWeaponsOption");
+    }
     private void ChooseCharacter(int selectedoption)
     {
         if (selectedoption == 0)
@@ -77,6 +93,18 @@ public class GameplayManager : MonoBehaviour
             heroString = "Knight";
         }
     
+    }
+    private void ChooseWeapon(int selecteWeaponsOption)
+    {
+        if (selecteWeaponsOption == 0)
+        {
+            weaponString = "Sword";
+        }
+        if (selecteWeaponsOption == 2)
+        {
+            weaponString = "Spear";
+        }
+
     }
 
 
