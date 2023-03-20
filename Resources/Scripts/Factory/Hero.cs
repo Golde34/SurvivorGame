@@ -20,6 +20,12 @@ public class Hero : MonoBehaviour
     public Vector2 speed2 = new Vector2(2f, 0);
     Vector2 localScale;
     GameObject target;
+    TextMeshProUGUI diamondText;
+    private void Awake()
+    {
+        diamondText = GameObject.FindGameObjectWithTag("GoldTextCount").GetComponent<TextMeshProUGUI>();
+    }
+
 
     public void Attack(Collider2D[] hitEnemies)
     {
@@ -33,7 +39,7 @@ public class Hero : MonoBehaviour
         nextTimeToDealDamage = Time.time + DSpeed;
     }
 
-    public float TakeDamage(float amount, float currentHealth)
+    public float TakeDamage(float amount, float currentHealth, GameObject gameObject)
     {
         currentHealth -= amount;
         Debug.Log("Current Heath: " + currentHealth + "/" + Health + "; Loss: " + amount);
@@ -43,6 +49,7 @@ public class Hero : MonoBehaviour
             //FIX BUG
             Time.timeScale = 0;
             gameObject.SetActive(false);
+            ScenesManager.Instance.LoadResultGame();
         }
         return currentHealth;
     }
@@ -57,7 +64,12 @@ public class Hero : MonoBehaviour
         Debug.Log("Heath after regen: " + currentHealth);
         return currentHealth;
     }
-
+ 
+    public string DisplayCurrentDiamond(int value, int diamondCountInGame)
+    {
+        diamondCountInGame += value;
+        return diamondCountInGame.ToString();
+    }
     public int CollectDiamond(int value, int diamonds)
     {
         diamonds += value;

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5408146087110752108}
   - component: {fileID: 4393289033941750544}
   - component: {fileID: 30826609690757096}
+  - component: {fileID: 7176819112475292640}
+  - component: {fileID: 289726391113811624}
   m_Layer: 0
   m_Name: HeroKnight
   m_TagString: Hero
@@ -100,3 +102,40 @@ MonoBehaviour:
   timeBetweenEnemyAttack: 3
   speed1: {x: 0, y: 2}
   speed2: {x: 2, y: 0}
+--- !u!70 &7176819112475292640
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215535527381146896}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.16, y: 0.28}
+  m_Direction: 0
+--- !u!50 &289726391113811624
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215535527381146896}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

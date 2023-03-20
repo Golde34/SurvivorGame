@@ -39,7 +39,7 @@ public class UnlockCharactor : MonoBehaviour
                 }
         }
     }
-
+    
     public void skinChange()
     {
         skinImage = transform.GetChild(0).GetComponent<Image>();

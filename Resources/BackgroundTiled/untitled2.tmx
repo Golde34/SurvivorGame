@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="120" height="67" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="120" height="67" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="7">
  <tileset firstgid="1" source="Terrain (32x32).tsx"/>
  <tileset firstgid="989" source="wall_corner_top_left.tsx"/>
  <tileset firstgid="990" source="wall_banner_blue.tsx"/>
  <tileset firstgid="991" source="wall_corner_front_right.tsx"/>
  <tileset firstgid="992" source="wall_banner_red.tsx"/>
+ <objectgroup id="5" name="Object Layer 1">
+  <object id="1" x="618.37" y="40.7028" width="832.843" height="73.5782"/>
+  <object id="2" x="1440.25" y="114.281" width="73.5782" height="851.629"/>
+  <object id="4" x="540.095" y="93.9296" width="100.192" height="879.808"/>
+  <object id="6" x="634.025" y="911.117" width="818.753" height="97.0606"/>
+ </objectgroup>
  <layer id="1" name="Tile Layer 1" width="120" height="67">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
