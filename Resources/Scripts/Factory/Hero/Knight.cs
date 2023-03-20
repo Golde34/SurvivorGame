@@ -47,32 +47,17 @@ public class Knight : MonoBehaviour, IHero
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-        Debug.Log("Current Heath: " + currentHealth + "/" + Health + "; Loss: " + amount);
-
-        if (currentHealth <= 0)
-        {
-            //FIX BUG
-            Time.timeScale = 0;
-            gameObject.SetActive(false);
-        }
+        currentHealth = _heroFlyweight.TakeDamage(amount, currentHealth);
     }
 
     public void RegenHealth(float health)
     {
-        currentHealth += health;
-        if (currentHealth > Health)
-        {
-            currentHealth = Health;
-        }
-        Debug.Log("Heath after regen: " + currentHealth);
+        currentHealth = _heroFlyweight.RegenHealth(health, currentHealth);
     }
 
     public void CollectDiamond(int value)
     {
-        diamonds += value;
-        Debug.Log("Gain Diamond: " + diamonds);
-        SaveTreasure(diamonds);
+        diamonds = _heroFlyweight.CollectDiamond(value, diamonds);
     }
 
     public int UseDiamonds()
@@ -82,84 +67,6 @@ public class Knight : MonoBehaviour, IHero
 
     public void Move()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            GoLeft();
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            GoRight();
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            GoUp();
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            GoDown();
-        }
-    }
-
-    void GoDown()
-    {
-        target.transform.Translate(-speed1 * Time.deltaTime);
-    }
-
-    void GoUp()
-    {
-        target.transform.Translate(speed1 * Time.deltaTime);
-    }
-
-    void GoRight()
-    {
-        target.transform.Translate(speed2 * Time.deltaTime);
-
-        localScale = gameObject.transform.localScale;
-        if (localScale.x < 0)
-        {
-            localScale.x *= -1;
-            gameObject.transform.localScale = localScale;
-        }
-    }
-    void GoLeft()
-    {
-        target.transform.Translate(-speed2 * Time.deltaTime);
-        localScale = gameObject.transform.localScale;
-        if (localScale.x > 0)
-        {
-            localScale.x *= -1;
-            gameObject.transform.localScale = localScale;
-        }
-    }
-
-    public int SaveTreasure(int scoreCount)
-    {
-        // Load total treasure
-        var jsonTextFile = Resources.Load<TextAsset>("Text/playerTreasure");
-        Treasure treasure = JsonUtility.FromJson<Treasure>(jsonTextFile.text);
-        // Calculate total treasure
-        int currentTreasure = treasure.totalTreasure;
-        int total = currentTreasure + scoreCount;
-        treasure.TotalTreasure = total;
-        // Save treasure
-        var savedJson = JsonUtility.ToJson(treasure);
-        WriteToFile("Resources/Text/playerTreasure.json", savedJson);
-        return total;
-    }
-
-    private void WriteToFile(string fileName, string json)
-    {
-        string path = GetFilePath(fileName);
-        FileStream fileStream = new FileStream(path, FileMode.Create);
-
-        using (StreamWriter writer = new StreamWriter(fileStream))
-        {
-            writer.Write(json);
-        }
-    }
-
-    private string GetFilePath(string fileName)
-    {
-        return Application.dataPath + "/" + fileName;
+        _heroFlyweight.Move(target, gameObject);
     }
 }
