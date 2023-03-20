@@ -1,6 +1,11 @@
+using Assets.Scripts.Object;
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameplayManager : MonoBehaviour
@@ -55,7 +60,12 @@ public class GameplayManager : MonoBehaviour
         IWeapon weapon = characterEvent.WeaponState(weaponString);
 
         //Decorate
+        //get fitpoint
+        int fitPoint = GetFitPoint();
+        hero = new FitpointDecorator(hero, fitPoint);
         hero = new HeroWeaponDecorator(hero, weapon);
+        
+        Debug.Log("Final Damage of hero in New Game: " + hero.Damage);
 
         //GUI 
         _healBar.hero = hero;
@@ -104,42 +114,37 @@ public class GameplayManager : MonoBehaviour
         {
             weaponString = "Spear";
         }
-
     }
 
-
-    void GoDown(GameObject gameObject)
+    private int GetFitPoint()
     {
-        gameObject.transform.Translate(-speed1 * Time.deltaTime);
-    }
-
-    void GoUp(GameObject gameObject)
-    {
-        gameObject.transform.Translate(speed1 * Time.deltaTime);
-    }
-
-    void GoRight(GameObject gameObject)
-    {
-        gameObject.transform.Translate(speed2 * Time.deltaTime);
-
-        localScale = gameObject.transform.localScale;
-        Debug.Log("localscale right:" + localScale);
-        if (localScale.x < 0)
+        int intFitPoint = 0;
+        var jsonTextFile = Resources.Load<UnityEngine.TextAsset>("Text/fitPoint");
+        FitPoint[] fitPoints = JsonHelper.FromJson<FitPoint>(jsonTextFile.text);
+        foreach (var fitPoint in fitPoints)
         {
-            localScale.x *= -1;
-            gameObject.transform.localScale = localScale;
+            if (fitPoint.Name.Equals(heroString))
+            {
+                switch (weaponString)
+                {
+                    case "Sword":
+                        intFitPoint =  fitPoint.Sword;
+                        break;
+                    case "Spear":
+                        intFitPoint =  fitPoint.Spear;
+                        break;
+                    case "Wand":
+                        intFitPoint =  fitPoint.Wand;
+                        break;
+                    case "Bow":
+                        intFitPoint =  fitPoint.Bow;
+                        break;
+                    default:
+                        intFitPoint =  fitPoint.Sword;
+                        break;
+                }
+            }
         }
-    }
-    void GoLeft(GameObject gameObject)
-    {
-        gameObject.transform.Translate(-speed2 * Time.deltaTime);
-        localScale = gameObject.transform.localScale;
-        Debug.Log("localscale left:" + localScale);
-
-        if (localScale.x > 0)
-        {
-            localScale.x *= -1;
-            gameObject.transform.localScale = localScale;
-        }
-    }
+        return intFitPoint;
+    }   
 }

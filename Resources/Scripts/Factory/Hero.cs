@@ -1,3 +1,4 @@
+using Assets.Scripts.Object;
 using System;
 using System.IO;
 using TMPro;
@@ -119,6 +120,7 @@ public class Hero : MonoBehaviour
 
     public int SaveTreasure(int scoreCount)
     {
+        SaveJson saveJson = new SaveJson();
         // Load total treasure
         var jsonTextFile = Resources.Load<TextAsset>("Text/playerTreasure");
         Treasure treasure = JsonUtility.FromJson<Treasure>(jsonTextFile.text);
@@ -128,7 +130,7 @@ public class Hero : MonoBehaviour
         treasure.TotalTreasure = total;
         // Save treasure
         var savedJson = JsonUtility.ToJson(treasure);
-        WriteToFile("Resources/Text/playerTreasure.json", savedJson);
+        saveJson.WriteToFile("Resources/Text/playerTreasure.json", savedJson);
         return total;
     }
 

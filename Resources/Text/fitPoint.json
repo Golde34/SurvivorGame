@@ -1,0 +1,32 @@
+{
+  "Items": [
+    {
+      "Name": "King",
+      "Sword": 3,
+      "Spear": 0,
+      "Wand": -3,
+      "Bow": -3
+    },
+    {
+      "Name": "Knight",
+      "Sword": -1,
+      "Spear": 2,
+      "Wand": -3,
+      "Bow": -1
+    },
+    {
+      "Name": "Wizzard",
+      "Sword": -3,
+      "Spear": -3,
+      "Wand": 2,
+      "Bow": 0
+    },
+    {
+      "Name": "Archer",
+      "Sword": 0,
+      "Spear": -2,
+      "Wand": -1,
+      "Bow": 2
+    }
+  ]
+}
