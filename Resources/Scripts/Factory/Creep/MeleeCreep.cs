@@ -9,11 +9,12 @@ public class MeleeCreep : Creep
     public void SetStat(int level)
     {
         // Initiates the variant's parameters
-        this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
 
         this.health = 10 * Mathf.Pow(level, 0.25f);
-        this.range = 0.4f;
         this.currentHealth = health;
+        this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
+        this.damage = 15 * Mathf.Pow(level, 0.2f);
+        this.range = 0.4f;
     }
 
     void Awake()
@@ -29,7 +30,7 @@ public class MeleeCreep : Creep
         }
         if (canShot)
         {
-            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(10);
+            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(damage);
 
             // Shoot
             canShot = false;

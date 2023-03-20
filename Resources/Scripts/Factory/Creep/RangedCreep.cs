@@ -10,12 +10,12 @@ public class RangedCreep : Creep
     public void SetStat(int level)
     {
         // Initiates the variant's parameters
-        this.speed = speedBase * 1.5f * (1 + Mathf.Pow(0.05f, level - 1));
 
         this.health = 10 * Mathf.Pow(level, 0.25f);
-        this.damage = 10;
+        this.currentHealth = health;
+        this.speed = speedBase * 1.5f * (1 + Mathf.Pow(0.05f, level - 1));
+        this.damage = 15 * Mathf.Pow(level, 0.2f);
         this.range = 1;
-        currentHealth = health;
     }
 
     public override void Attack(GameObject target)
@@ -31,6 +31,7 @@ public class RangedCreep : Creep
             {
                 cannonball.transform.position = gameObject.transform.position;
                 cannonball.GetComponent<Cannonball>().Destination = target.transform.position;
+                cannonball.GetComponent<Cannonball>().Damage = damage;
                 cannonball.GetComponent<Cannonball>().ResetTimer();
                 cannonball.SetActive(true);
 

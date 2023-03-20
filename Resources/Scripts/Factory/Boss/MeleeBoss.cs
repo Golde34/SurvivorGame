@@ -10,10 +10,11 @@ public class MeleeBoss : Boss
     {
         // Initiates the variant's parameters
 
-        this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
         this.health = 10 * Mathf.Pow(level, 0.25f) * 4;
-        this.range = 0.5f;
         currentHealth = health;
+        this.speed = speedBase * (1 + Mathf.Pow(0.05f, level - 1));
+        this.damage = 20 * Mathf.Pow(level, 0.2f);
+        this.range = 0.5f;
     }
 
     void Awake()
@@ -29,7 +30,7 @@ public class MeleeBoss : Boss
         }
         if (canShot)
         {
-            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(20);
+            GameObject.FindGameObjectWithTag("Hero").GetComponent<IHero>().TakeDamage(damage);
 
             // Shoot
             canShot = false;
