@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 1443233101}
   m_Layer: 5
   m_Name: GoldTextResult
-  m_TagString: GoldTextCount
+  m_TagString: GoldTextResult
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

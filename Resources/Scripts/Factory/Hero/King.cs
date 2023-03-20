@@ -65,6 +65,14 @@ public class King : MonoBehaviour, IHero
         diamonds = _heroFlyweight.CollectDiamond(value, diamonds);
         currentDiamond.text = _heroFlyweight.DisplayCurrentDiamond(value, diamondCountInGame);
         diamondCountInGame = Int32.Parse(currentDiamond.text);
+        if (!PlayerPrefs.HasKey("GoldTextResult"))
+        {
+            PlayerPrefs.SetString("GoldTextResult", "0");
+        }
+        else
+        {
+            PlayerPrefs.SetString("GoldTextResult", currentDiamond.text);
+        }
     }
 
     public int UseDiamonds()
