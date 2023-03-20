@@ -13,7 +13,7 @@ public class KnightFactory : MonoBehaviour, IHeroFactory
         knight.Damage = 25;
         knight.Defense = 10;
         knight.Speed = 1.8f;
-        knight.DSpeed = 1;
+        knight.DSpeed = 1.5f;
         knight.Range = 0.6f;
         return knight;
     }

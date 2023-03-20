@@ -13,8 +13,9 @@ public class Knight : MonoBehaviour, IHero
     public float DSpeed { get; set; }
     public float Range { get; set; }
     public float currentHealth { get; set; }
-
     public IWeapon Weapon { get; set; }
+
+    private Hero _heroFlyweight;
 
     private float nextTimeToDealDamage = 0;
     public float timeBetweenEnemyAttack = 3;
@@ -30,19 +31,16 @@ public class Knight : MonoBehaviour, IHero
         gameObject.transform.position = target.transform.position;
     }
 
+    public Knight()
+    {
+        _heroFlyweight = HeroFlyweightFactory.GetFlyWeight("Knight");
+    }
+
     public void Attack(Collider2D[] hitEnemies)
     {
         if (Time.time >= nextTimeToDealDamage)
         {
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                if (enemy.tag.Equals("Enemy"))
-                {
-                    Debug.Log(Weapon.Damage);
-                    currentHealth += 2;
-                    enemy.GetComponent<Enemy>().TakeDamage(Damage);
-                }
-            }
+            _heroFlyweight.Attack(hitEnemies);
             nextTimeToDealDamage = Time.time + DSpeed;
         }
     }
