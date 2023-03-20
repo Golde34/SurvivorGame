@@ -24,7 +24,12 @@ public class King : MonoBehaviour, IHero
     Vector2 localScale;
     GameObject target;
     int diamonds = 0;
-
+    int diamondCountInGame = 0;
+    TextMeshProUGUI currentDiamond;
+    private void Awake()
+    {
+        currentDiamond = GameObject.FindGameObjectWithTag("GoldTextCount").GetComponent<TextMeshProUGUI>();
+    }
     void Update()
     {
         target = GameObject.FindGameObjectWithTag("Hero");
@@ -47,7 +52,7 @@ public class King : MonoBehaviour, IHero
 
     public void TakeDamage(float amount)
     {
-        currentHealth = _heroFlyweight.TakeDamage(amount, currentHealth);
+        currentHealth = _heroFlyweight.TakeDamage(amount, currentHealth, gameObject);
     }
 
     public void RegenHealth(float health)
@@ -57,7 +62,9 @@ public class King : MonoBehaviour, IHero
 
     public void CollectDiamond(int value)
     {
-        diamonds = _heroFlyweight.CollectDiamond(value, diamonds); 
+        diamonds = _heroFlyweight.CollectDiamond(value, diamonds);
+        currentDiamond.text = _heroFlyweight.DisplayCurrentDiamond(value, diamondCountInGame);
+        diamondCountInGame = Int32.Parse(currentDiamond.text);
     }
 
     public int UseDiamonds()

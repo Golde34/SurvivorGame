@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -5235274761964151687}
   - component: {fileID: -1326267582868570982}
   - component: {fileID: 6417097831710715551}
+  - component: {fileID: 7523822082945153236}
   m_Layer: 0
   m_Name: HeroKing
   m_TagString: Hero
@@ -117,3 +118,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.37, y: 0.26}
   m_Direction: 0
+--- !u!50 &7523822082945153236
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781982637734854721}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

@@ -47,7 +47,7 @@ public class Knight : MonoBehaviour, IHero
 
     public void TakeDamage(float amount)
     {
-        currentHealth = _heroFlyweight.TakeDamage(amount, currentHealth);
+        currentHealth = _heroFlyweight.TakeDamage(amount, currentHealth,gameObject);
     }
 
     public void RegenHealth(float health)
