@@ -39,19 +39,17 @@ public class Hero : MonoBehaviour
         nextTimeToDealDamage = Time.time + DSpeed;
     }
 
-    public float TakeDamage(float amount, float currentHealth, GameObject gameObject)
+    public float TakeDamage(float amount, float currentHealth)
     {
         currentHealth -= amount;
         Debug.Log("Current Heath: " + currentHealth + "/" + Health + "; Loss: " + amount);
-
-        if (currentHealth <= 0)
-        {
-            //FIX BUG
-            Time.timeScale = 0;
-            gameObject.SetActive(false);
-            ScenesManager.Instance.LoadResultGame();
-        }
         return currentHealth;
+    }
+
+    public void Die()
+    {
+        Time.timeScale = 0;
+        ScenesManager.Instance.LoadResultGame();
     }
 
     public float RegenHealth(float health, float currentHealth)

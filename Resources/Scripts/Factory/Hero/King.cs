@@ -52,7 +52,12 @@ public class King : MonoBehaviour, IHero
 
     public void TakeDamage(float amount)
     {
-        currentHealth = _heroFlyweight.TakeDamage(amount, currentHealth, gameObject);
+        currentHealth = _heroFlyweight.TakeDamage(amount, currentHealth);
+        if (currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+            _heroFlyweight.Die();
+        }
     }
 
     public void RegenHealth(float health)
