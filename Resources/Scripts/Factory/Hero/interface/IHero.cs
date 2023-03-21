@@ -13,7 +13,7 @@ public interface IHero
     IWeapon Weapon { get; set; }
 
     void Attack(Collider2D[] hitEnemies);
-    void Move();
+    void Move(float x, float y);
     void TakeDamage(float amount);
     void RegenHealth(float health);
     void CollectDiamond(int value);

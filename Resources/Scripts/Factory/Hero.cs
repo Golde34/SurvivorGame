@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    
     public float Health { get; set; }
     public int Damage { get; set; }
     public int Defense { get; set; }
@@ -21,11 +22,16 @@ public class Hero : MonoBehaviour
     Vector2 localScale;
     GameObject target;
     TextMeshProUGUI diamondText;
+    
     private void Awake()
     {
         diamondText = GameObject.FindGameObjectWithTag("GoldTextCount").GetComponent<TextMeshProUGUI>();
     }
 
+    private void Start()
+    {
+        
+    }
 
     public void Attack(Collider2D[] hitEnemies)
     {
@@ -48,7 +54,6 @@ public class Hero : MonoBehaviour
 
     public void Die()
     {
-        Time.timeScale = 0;
         ScenesManager.Instance.LoadResultGame();
     }
 
@@ -76,21 +81,21 @@ public class Hero : MonoBehaviour
         return diamonds;
     }
 
-    public void Move(GameObject target, GameObject localPosition)
+    public void Move(GameObject target, GameObject localPosition, float x, float y)
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (x < 0)
         {
             GoLeft(target, localPosition);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (x > 0)
         {
             GoRight(target, localPosition);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (y > 0)
         {
             GoUp(target);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (y < 0)
         {
             GoDown(target);
         }

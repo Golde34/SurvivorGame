@@ -26,6 +26,8 @@ public class GameplayManager : MonoBehaviour
     private string heroString;
     private string weaponString;
 
+    public FixedJoystick _joystick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,13 +71,15 @@ public class GameplayManager : MonoBehaviour
 
         //GUI 
         _healBar.hero = hero;
+
+        _joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FixedJoystick>();
     }
 
     // Update is called once per frame
     void Update()
     {
         GameObject target = GameObject.FindGameObjectWithTag("Hero");
-        hero.Move();
+        hero.Move(_joystick.Horizontal, _joystick.Vertical);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, hero.Range, LayerMask.GetMask("Enemy"));
         if (hitEnemies != null && hitEnemies.Length > 0)

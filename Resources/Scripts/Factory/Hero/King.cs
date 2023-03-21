@@ -85,8 +85,8 @@ public class King : MonoBehaviour, IHero
         return diamonds;
     }
 
-    public void Move()
+    public void Move(float x, float y)
     {
-        _heroFlyweight.Move(target, gameObject);
+        _heroFlyweight.Move(target, gameObject, x, y);
     }
 }

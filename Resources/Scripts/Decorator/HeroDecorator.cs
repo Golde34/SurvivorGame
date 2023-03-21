@@ -34,7 +34,7 @@ public abstract class HeroDecorator : IHero
         return hero.UseDiamonds();
     }
 
-    public virtual void Move() { hero.Move(); }
+    public virtual void Move(float x, float y) { hero.Move(x, y); }
 
     public virtual float Health { get => hero.Health; set => hero.Health = value; }
     public virtual int Damage

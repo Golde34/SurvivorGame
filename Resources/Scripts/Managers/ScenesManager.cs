@@ -49,7 +49,6 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene(Scene.ResultGame.ToString());
     }
 
-
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
