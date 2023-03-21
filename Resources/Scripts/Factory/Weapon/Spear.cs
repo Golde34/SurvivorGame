@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static WaveSpawner;
 
 public class Spear : MonoBehaviour, IWeapon
 {

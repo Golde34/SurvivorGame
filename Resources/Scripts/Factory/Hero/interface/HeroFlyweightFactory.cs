@@ -27,10 +27,22 @@ public static class HeroFlyweightFactory
                     {
                         Health = 150f,
                         Damage = 25,
-                        Defense = 10,
+                        Defense = 15,
                         Speed = 1.8f,
                         DSpeed = 1.5f,
                         Range = 0.6f
+                    };
+                    break;
+
+                case "Wizard":
+                    flyweights[heroString] = new Hero
+                    {
+                        Health = 120f,
+                        Damage = 25,
+                        Defense = 10,
+                        Speed = 1.5f,
+                        DSpeed = 1.25f,
+                        Range = 0.3f
                     };
                     break;
             }

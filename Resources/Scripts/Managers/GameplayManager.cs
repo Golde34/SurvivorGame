@@ -106,13 +106,21 @@ public class GameplayManager : MonoBehaviour
         {
             heroString = "Knight";
         }
-    
+        if (selectedoption == 2)
+        {
+            heroString = "Wizard";
+        }
+
     }
     private void ChooseWeapon(int selecteWeaponsOption)
     {
         if (selecteWeaponsOption == 0)
         {
             weaponString = "Sword";
+        }
+        if (selecteWeaponsOption == 1)
+        {
+            weaponString = "Wand";
         }
         if (selecteWeaponsOption == 2)
         {

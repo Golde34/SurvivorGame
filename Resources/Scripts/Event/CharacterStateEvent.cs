@@ -17,6 +17,11 @@ public class CharacterStateEvent
                 spawner.SetFactory(new KnightFactory());
                 hero = spawner.SpawnHero();
                 return hero;
+            case "Wizard":
+                Debug.Log("Wizard");
+                spawner.SetFactory(new WizardFactory());
+                hero = spawner.SpawnHero();
+                return hero;
             default:
                 Debug.Log("Default");
                 spawner.SetFactory(new KingFactory());
