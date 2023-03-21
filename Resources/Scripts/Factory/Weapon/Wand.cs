@@ -54,6 +54,7 @@ public class Wand : MonoBehaviour, IWeapon
                 thunder.transform.position = gameObject.transform.position;
                 thunder.GetComponent<Thunderbolt>().Target = target;
                 thunder.GetComponent<Thunderbolt>().Damage = Damage;
+                Debug.Log(thunder.GetComponent<Thunderbolt>().Damage);
                 thunder.GetComponent<Thunderbolt>().ResetTimer();
                 thunder.SetActive(true);
             }

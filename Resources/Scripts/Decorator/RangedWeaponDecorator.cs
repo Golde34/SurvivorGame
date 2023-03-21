@@ -9,6 +9,15 @@ public class RangedWeaponDecorator : HeroDecorator
         this.weapon = weapon;
     }
 
+    public override int Damage
+    {
+        get
+        {
+            return 0;
+        }
+        set { base.Damage = value; }
+    }
+
     public override void Attack(Collider2D[] hitEnemies)
     {
         weapon.Damage = base.Damage + weapon.Damage;
