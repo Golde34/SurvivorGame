@@ -26,7 +26,10 @@ public class Knight : MonoBehaviour, IHero
     int diamonds = 0;
     int diamondCountInGame = 0;
     TextMeshProUGUI currentDiamond;
-
+    private void Awake()
+    {
+        currentDiamond = GameObject.FindGameObjectWithTag("GoldTextCount").GetComponent<TextMeshProUGUI>();
+    }
     void Update()
     {
         target = GameObject.FindGameObjectWithTag("Hero");
