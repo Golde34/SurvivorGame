@@ -44,7 +44,7 @@ public class Wand : MonoBehaviour, IWeapon
 
     private void Fire()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, 5f, LayerMask.GetMask("Enemy"));
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, 2f, LayerMask.GetMask("Enemy"));
         if (hitEnemies.Length > 0)
         {
             GameObject target = findClosestEnemy(hitEnemies);
