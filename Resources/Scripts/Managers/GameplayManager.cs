@@ -60,12 +60,21 @@ public class GameplayManager : MonoBehaviour
         hero = characterEvent.HeroState(spawner, heroString);
 
         IWeapon weapon = characterEvent.WeaponState(weaponString);
+        Debug.Log("damage weapon: " + weapon.Damage);
 
         //Decorate
         //get fitpoint
         int fitPoint = GetFitPoint();
         hero = new FitpointDecorator(hero, fitPoint);
-        hero = new HeroWeaponDecorator(hero, weapon);
+        Debug.Log(weaponString);
+        if (weaponString.Equals("Wand"))
+        {
+            hero = new RangedWeaponDecorator(hero, weapon);
+        } else
+        {
+            hero = new HeroWeaponDecorator(hero, weapon, weapon.Damage);
+        }
+        
         
         Debug.Log("Final Damage of hero in New Game: " + hero.Damage);
 

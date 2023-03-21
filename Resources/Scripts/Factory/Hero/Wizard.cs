@@ -17,7 +17,7 @@ public class Wizard : MonoBehaviour, IHero
 
     private Hero _heroFlyweight;
 
-    private float nextTimeToDealDamage = 0;
+    private float nextTimeToDealDamage = 3;
     public float timeBetweenEnemyAttack = 3;
     public Vector2 speed1 = new Vector2(0, 2f);
     public Vector2 speed2 = new Vector2(2f, 0);
@@ -33,7 +33,6 @@ public class Wizard : MonoBehaviour, IHero
     void Update()
     {
         target = GameObject.FindGameObjectWithTag("Hero");
-        Debug.Log(target);
         gameObject.transform.position = target.transform.position;
     }
 

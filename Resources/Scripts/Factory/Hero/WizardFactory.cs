@@ -13,8 +13,8 @@ public class WizardFactory : MonoBehaviour, IHeroFactory
         Wizard.Damage = 20;
         Wizard.Defense = 15;
         Wizard.Speed = 1;
-        Wizard.DSpeed = 2;
-        Wizard.Range = 0.5f;
+        Wizard.DSpeed = 0.2f;
+        Wizard.Range = 2f;
 
         return Wizard;
     }

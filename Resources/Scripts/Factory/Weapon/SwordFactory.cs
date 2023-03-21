@@ -13,7 +13,7 @@ public class SwordFactory : MonoBehaviour, IWeaponFactory
         SwordObj.transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
 
         Sword Sword = SwordObj.AddComponent<Sword>();
-        Sword.FitPoint = 0;
+        Sword.Damage = 3;
         Sword.WeaponPoint = SwordObj.transform.position;
         return Sword;
     }

@@ -16,6 +16,7 @@ public class ObjectPool : MonoBehaviour
 
     public List<GameObject> pooledCannonballs;
     public List<GameObject> pooledFires;
+    public List<GameObject> pooledThunderbolt;
 
     public int amountMeleeCreepToPool;
     public int amountRangedCreepToPool;    
@@ -23,6 +24,7 @@ public class ObjectPool : MonoBehaviour
     public int amountRangedBossToPool;
     public int amountCannonballToPool;
     public int amountFireToPool;
+    public int amountThunderboltToPool;
 
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class ObjectPool : MonoBehaviour
         amountRangedBossToPool = 5;
         amountCannonballToPool = 60;
         amountFireToPool = 5;
+        amountThunderboltToPool = 1;
     }
 
     // Start is called before the first frame update
@@ -45,6 +48,7 @@ public class ObjectPool : MonoBehaviour
         pooledRangedBoss = new List<GameObject>();
         pooledCannonballs = new List<GameObject>();
         pooledFires = new List<GameObject>();
+        pooledThunderbolt= new List<GameObject>();
 
         var meleeBossGameObject = Resources.Load("Prefabs/MeleeBoss") as GameObject;
         if (meleeBossGameObject != null)
@@ -134,6 +138,21 @@ public class ObjectPool : MonoBehaviour
         {
             throw new System.ArgumentException("Prefab does not exist.");
         }
+
+        var thunderboltObject = Resources.Load("Prefabs/Thunderbolt") as GameObject;
+        if (thunderboltObject != null)
+        {
+            for (int i = 0; i < amountThunderboltToPool; i++)
+            {
+                var thundert = Instantiate(thunderboltObject);
+                thundert.SetActive(false);
+                pooledThunderbolt.Add(thundert);
+            }
+        }
+        else
+        {
+            throw new System.ArgumentException("Prefab does not exist.");
+        }
     }
 
     // Update is called once per frame
@@ -206,6 +225,17 @@ public class ObjectPool : MonoBehaviour
                 if (!pooledFires[i].activeInHierarchy)
                 {
                     return pooledFires[i];
+                }
+            }
+            return null;
+        }
+        if(Type.Equals("Thunderbolt"))
+        {
+            for (int i = 0; i < amountThunderboltToPool; i++)
+            {
+                if (!pooledThunderbolt[i].activeInHierarchy)
+                {
+                    return pooledThunderbolt[i];
                 }
             }
             return null;

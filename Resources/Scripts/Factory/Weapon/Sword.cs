@@ -4,7 +4,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour, IWeapon
 {
     public string Name => "Sword";
-    public int Damage => 3;
+    public int Damage { get; set; }
     public int FitPoint { get; set; }
     public Vector3 WeaponPoint { get; set; }
 

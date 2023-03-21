@@ -49,6 +49,12 @@ public class CharacterStateEvent
                 target = GameObject.FindGameObjectWithTag("Hero");
                 weapon = factory.CreateWeapon(target.gameObject.transform);
                 return weapon;
+            case "Wand":
+                Debug.Log("Wand");
+                factory = new WandFactory();
+                target = GameObject.FindGameObjectWithTag("Hero");
+                weapon = factory.CreateWeapon(target.gameObject.transform);
+                return weapon;
             default:
                 factory = new SwordFactory();
                 target = GameObject.FindGameObjectWithTag("Hero");

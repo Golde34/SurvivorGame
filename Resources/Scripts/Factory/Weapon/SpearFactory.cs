@@ -13,7 +13,7 @@ public class SpearFactory : MonoBehaviour, IWeaponFactory
         SpearObj.transform.localRotation = Quaternion.Euler(new Vector3 (0,0,315));
 
         Spear Spear = SpearObj.AddComponent<Spear>();
-        Spear.FitPoint = 0;
+        Spear.Damage = 4;
         Spear.WeaponPoint = SpearObj.transform.position;
         return Spear;
     }

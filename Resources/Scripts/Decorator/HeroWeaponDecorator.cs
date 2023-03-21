@@ -3,17 +3,19 @@
 public class HeroWeaponDecorator : HeroDecorator
 {
     public IWeapon weapon;
-    public HeroWeaponDecorator(IHero hero, IWeapon weapon) : base(hero)
+    public int weaponDamage;
+    public HeroWeaponDecorator(IHero hero, IWeapon weapon, int weaponDamage) : base(hero)
     {
         this.weapon = weapon;
         hero.Weapon = weapon;
+        this.weaponDamage = weaponDamage;
     }
 
     public override int Damage
     {
         get
         {
-            return base.Damage + weapon.Damage;
+            return base.Damage + weaponDamage;
         }
         set { base.Damage = value; }
     }
