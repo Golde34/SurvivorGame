@@ -22,6 +22,9 @@ public class Hero : MonoBehaviour
     Vector2 localScale;
     GameObject target;
     TextMeshProUGUI diamondText;
+
+    // use this to set the speed as player drag the joystick further from the core
+    float percentOfSpeed = 1f;
     
     private void Awake()
     {
@@ -83,6 +86,7 @@ public class Hero : MonoBehaviour
 
     public void Move(GameObject target, GameObject localPosition, float x, float y)
     {
+        percentOfSpeed = (float)Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
         if (x < 0)
         {
             GoLeft(target, localPosition);
@@ -103,17 +107,17 @@ public class Hero : MonoBehaviour
 
     void GoDown(GameObject target)
     {
-        target.transform.Translate(-speed1 * Time.deltaTime);
+        target.transform.Translate(-speed1 * Time.deltaTime * percentOfSpeed);
     }
 
     void GoUp(GameObject target)
     {
-        target.transform.Translate(speed1 * Time.deltaTime);
+        target.transform.Translate(speed1 * Time.deltaTime * percentOfSpeed);
     }
 
     void GoRight(GameObject target, GameObject localPosition)
     {
-        target.transform.Translate(speed2 * Time.deltaTime);
+        target.transform.Translate(speed2 * Time.deltaTime * percentOfSpeed);
 
         var localScale = localPosition.transform.localScale;
         if (localScale.x < 0)
@@ -124,7 +128,7 @@ public class Hero : MonoBehaviour
     }
     void GoLeft(GameObject target, GameObject localPosition)
     {
-        target.transform.Translate(-speed2 * Time.deltaTime);
+        target.transform.Translate(-speed2 * Time.deltaTime * percentOfSpeed);
         var localScale = localPosition.transform.localScale;
         if (localScale.x > 0)
         {
