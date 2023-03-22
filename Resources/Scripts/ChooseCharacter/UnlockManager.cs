@@ -10,6 +10,8 @@ public class UnlockManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject hero;
     private TextMeshProUGUI gold;
+    private int GoldCollect;
+    private string totalGold;
 
     void Awake()
     {
@@ -18,7 +20,18 @@ public class UnlockManager : MonoBehaviour
     void Start()
     {
         TakeSaveTreasure();
-        //PlayerPrefs.DeleteKey("UnlockCharacter");
+
+        if (!PlayerPrefs.HasKey("GoldTextResult"))
+        {
+            GoldCollect = 0;
+        }
+        else
+        {
+            GoldCollect = Int32.Parse(PlayerPrefs.GetString("GoldTextResult", GoldCollect.ToString()));
+        }
+        PlayerPrefs.SetString("ToTalGold", (GoldCollect + Int32.Parse(PlayerPrefs.GetString("ToTalGold", totalGold))).ToString());
+
+        PlayerPrefs.DeleteKey("UnlockCharacter");
         if (!PlayerPrefs.HasKey("UnlockCharacter"))
         {
             PlayerPrefs.SetString("UnlockCharacter", "0");
@@ -39,7 +52,10 @@ public class UnlockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //TakeSaveTreasure();
+        gold.text = PlayerPrefs.GetString("ToTalGold", gold.text);
+       
     }
     private void TakeSaveTreasure()
     {

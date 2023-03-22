@@ -27,7 +27,8 @@ public class UnlockCharactor : MonoBehaviour
                 unLock.SetActive(false);
                 goldCount = goldCount - 200;
                 gold.text = goldCount.ToString();
-                SaveTreasure(goldCount);
+                PlayerPrefs.SetString("ToTalGold", goldCount.ToString());
+                //SaveTreasure(goldCount);
                 var unLockedCharacterArray = PlayerPrefs.GetString("UnlockCharacter").Split(',');
                 if (Array.IndexOf(unLockedCharacterArray, skinIndex) < 0)
                 {
@@ -46,7 +47,8 @@ public class UnlockCharactor : MonoBehaviour
                 unLock.SetActive(false);
                 goldCount = goldCount - 500;
                 gold.text = goldCount.ToString();
-                SaveTreasure(goldCount);
+                //SaveTreasure(goldCount);
+                PlayerPrefs.SetString("ToTalGold", goldCount.ToString());
                 var unLockedCharacterArray = PlayerPrefs.GetString("UnlockCharacter").Split(',');
                 if (Array.IndexOf(unLockedCharacterArray, skinIndex) < 0)
                 {

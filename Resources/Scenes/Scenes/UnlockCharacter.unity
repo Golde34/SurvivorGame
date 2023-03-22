@@ -1135,7 +1135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4234284050514168250, guid: bac8090a47ec6f94995523bd471bb1ee, type: 3}
       propertyPath: m_text
-      value: '1000
+      value: '400
 
 '
       objectReference: {fileID: 0}
@@ -2013,7 +2013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4234284050514168250, guid: bac8090a47ec6f94995523bd471bb1ee, type: 3}
       propertyPath: m_text
-      value: '500
+      value: '200
 
 
 '
