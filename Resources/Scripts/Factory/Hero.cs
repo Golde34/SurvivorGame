@@ -147,9 +147,9 @@ public class Hero : MonoBehaviour
         int total = currentTreasure + scoreCount;
         treasure.TotalTreasure = total;
         // Save treasure
-        var savedJson = JsonUtility.ToJson(treasure);
-        File.WriteAllText(Application.dataPath + "/Resources/Text/playerTreasure.json", savedJson.ToString());
-        Debug.Log(Application.dataPath + "/Resources/Text/playerTreasure.json");
+       // var savedJson = JsonUtility.ToJson(treasure);
+        //File.WriteAllText(Application.dataPath + "/Resources/Text/playerTreasure.json", savedJson.ToString());
+        //Debug.Log(Application.dataPath + "/Resources/Text/playerTreasure.json");
         return total;
     }
 

@@ -19,14 +19,19 @@ public class UnlockManager : MonoBehaviour
     }
     void Start()
     {
-        TakeSaveTreasure();
-        PlayerPrefs.SetString("ToTalGold", gold.text);
+        if (!PlayerPrefs.HasKey("ToTalGold"))
+        {
+            gold.text = "1000";
+        }
+
         if (!PlayerPrefs.HasKey("GoldTextResult"))
         {
             GoldCollect = 0;
+            PlayerPrefs.SetString("ToTalGold", gold.text);
         }
         else
         {
+           
             GoldCollect = Int32.Parse(PlayerPrefs.GetString("GoldTextResult", GoldCollect.ToString()));
         }
         PlayerPrefs.SetString("ToTalGold", (GoldCollect + Int32.Parse(PlayerPrefs.GetString("ToTalGold", totalGold))).ToString());
