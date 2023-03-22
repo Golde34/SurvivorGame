@@ -38,7 +38,7 @@ public class Diamond : MonoBehaviour
         {
             var target = GameObject.FindGameObjectWithTag("Hero");
 
-            if (Vector2.Distance(transform.position, target.transform.position) <= 0.1f)
+            if (Vector2.Distance(transform.position, target.transform.position) <= 0.4f)
             {
                 return true;
             }
