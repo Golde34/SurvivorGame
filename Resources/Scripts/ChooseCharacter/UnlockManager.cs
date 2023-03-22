@@ -27,6 +27,7 @@ public class UnlockManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("GoldTextResult"))
         {
             GoldCollect = 0;
+           
             PlayerPrefs.SetString("ToTalGold", gold.text);
         }
         else
@@ -35,6 +36,7 @@ public class UnlockManager : MonoBehaviour
             GoldCollect = Int32.Parse(PlayerPrefs.GetString("GoldTextResult", GoldCollect.ToString()));
         }
         PlayerPrefs.SetString("ToTalGold", (GoldCollect + Int32.Parse(PlayerPrefs.GetString("ToTalGold", totalGold))).ToString());
+        //PlayerPrefs.DeleteKey("GoldTextResult");
 
         //PlayerPrefs.DeleteKey("UnlockCharacter");
         if (!PlayerPrefs.HasKey("UnlockCharacter"))
