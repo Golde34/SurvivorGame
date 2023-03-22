@@ -20,7 +20,7 @@ public class UnlockManager : MonoBehaviour
     void Start()
     {
         TakeSaveTreasure();
-
+        PlayerPrefs.SetString("ToTalGold", gold.text);
         if (!PlayerPrefs.HasKey("GoldTextResult"))
         {
             GoldCollect = 0;
