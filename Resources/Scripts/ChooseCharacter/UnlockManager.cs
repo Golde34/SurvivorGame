@@ -36,7 +36,7 @@ public class UnlockManager : MonoBehaviour
         }
         PlayerPrefs.SetString("ToTalGold", (GoldCollect + Int32.Parse(PlayerPrefs.GetString("ToTalGold", totalGold))).ToString());
 
-        PlayerPrefs.DeleteKey("UnlockCharacter");
+        //PlayerPrefs.DeleteKey("UnlockCharacter");
         if (!PlayerPrefs.HasKey("UnlockCharacter"))
         {
             PlayerPrefs.SetString("UnlockCharacter", "0");
