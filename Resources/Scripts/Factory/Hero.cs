@@ -139,7 +139,6 @@ public class Hero : MonoBehaviour
 
     public int SaveTreasure(int scoreCount)
     {
-        SaveJson saveJson = new SaveJson();
         // Load total treasure
         var jsonTextFile = Resources.Load<TextAsset>("Text/playerTreasure");
         Treasure treasure = JsonUtility.FromJson<Treasure>(jsonTextFile.text);
@@ -149,7 +148,8 @@ public class Hero : MonoBehaviour
         treasure.TotalTreasure = total;
         // Save treasure
         var savedJson = JsonUtility.ToJson(treasure);
-        saveJson.WriteToFile("Resources/Text/playerTreasure.json", savedJson);
+        File.WriteAllText(Application.dataPath + "/Resources/Text/playerTreasure.json", savedJson.ToString());
+        Debug.Log(Application.dataPath + "/Resources/Text/playerTreasure.json");
         return total;
     }
 
