@@ -17,7 +17,8 @@ public class UnlockCharactor : MonoBehaviour
     }
     public void unlockCharactor()
     {
-        var goldCount = Convert.ToInt32(gold.text);
+        int goldCount = Int32.Parse(PlayerPrefs.GetString("ToTalGold", "500"));
+
         var unLock = transform.GetChild(1).gameObject;
 
         if (skinIndex == 1)
@@ -28,7 +29,6 @@ public class UnlockCharactor : MonoBehaviour
                 goldCount = goldCount - 200;
                 gold.text = goldCount.ToString();
                 PlayerPrefs.SetString("ToTalGold", goldCount.ToString());
-                //SaveTreasure(goldCount);
                 var unLockedCharacterArray = PlayerPrefs.GetString("UnlockCharacter").Split(',');
                 if (Array.IndexOf(unLockedCharacterArray, skinIndex) < 0)
                 {
@@ -36,7 +36,7 @@ public class UnlockCharactor : MonoBehaviour
                     unLockedCharacterArray[unLockedCharacterArray.Length - 1] = skinIndex.ToString();
                     PlayerPrefs.SetString("UnlockCharacter", string.Join(",", unLockedCharacterArray));
                     Debug.Log(PlayerPrefs.GetString("UnlockCharacter"));
-                    //PlayerPrefs.DeleteKey("UnlockCharacter");
+                   
                 }
             }
         }
@@ -47,7 +47,6 @@ public class UnlockCharactor : MonoBehaviour
                 unLock.SetActive(false);
                 goldCount = goldCount - 500;
                 gold.text = goldCount.ToString();
-                //SaveTreasure(goldCount);
                 PlayerPrefs.SetString("ToTalGold", goldCount.ToString());
                 var unLockedCharacterArray = PlayerPrefs.GetString("UnlockCharacter").Split(',');
                 if (Array.IndexOf(unLockedCharacterArray, skinIndex) < 0)
@@ -56,39 +55,8 @@ public class UnlockCharactor : MonoBehaviour
                     unLockedCharacterArray[unLockedCharacterArray.Length - 1] = skinIndex.ToString();
                     PlayerPrefs.SetString("UnlockCharacter", string.Join(",", unLockedCharacterArray));
                     Debug.Log(PlayerPrefs.GetString("UnlockCharacter"));
-                    //PlayerPrefs.DeleteKey("UnlockCharacter");
                 }
             }
         }
     }
-   
-    public void SaveTreasure(int scoreCount)
-    {
-        SaveJson saveJson = new SaveJson();
-        // Load total treasure
-        var jsonTextFile = Resources.Load<TextAsset>("Text/playerTreasure");
-        Treasure treasure = JsonUtility.FromJson<Treasure>(jsonTextFile.text);
-        treasure.TotalTreasure = scoreCount;
-        // Save treasure
-        var savedJson = JsonUtility.ToJson(treasure);
-        saveJson.WriteToFile("Resources/Text/playerTreasure.json", savedJson);
-
-    }
-
-    private void WriteToFile(string fileName, string json)
-    {
-        string path = GetFilePath(fileName);
-        FileStream fileStream = new FileStream(path, FileMode.Create);
-
-        using (StreamWriter writer = new StreamWriter(fileStream))
-        {
-            writer.Write(json);
-        }
-    }
-    private string GetFilePath(string fileName)
-    {
-        return Application.dataPath + "/" + fileName;
-    }
-
-
 }

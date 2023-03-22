@@ -21,24 +21,24 @@ public class UnlockManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("ToTalGold"))
         {
-            gold.text = "1000";
+            
+            PlayerPrefs.SetString("ToTalGold", gold.text);
+        }
+        else
+        {
+            gold.text = PlayerPrefs.GetString("ToTalGold", gold.text);
         }
 
         if (!PlayerPrefs.HasKey("GoldTextResult"))
         {
             GoldCollect = 0;
-           
-            PlayerPrefs.SetString("ToTalGold", gold.text);
         }
         else
         {
-           
             GoldCollect = Int32.Parse(PlayerPrefs.GetString("GoldTextResult", GoldCollect.ToString()));
+            PlayerPrefs.SetString("ToTalGold", (GoldCollect + Int32.Parse(PlayerPrefs.GetString("ToTalGold", totalGold))).ToString());
+            PlayerPrefs.DeleteKey("GoldTextResult");
         }
-        PlayerPrefs.SetString("ToTalGold", (GoldCollect + Int32.Parse(PlayerPrefs.GetString("ToTalGold", totalGold))).ToString());
-        //PlayerPrefs.DeleteKey("GoldTextResult");
-
-        //PlayerPrefs.DeleteKey("UnlockCharacter");
         if (!PlayerPrefs.HasKey("UnlockCharacter"))
         {
             PlayerPrefs.SetString("UnlockCharacter", "0");
@@ -58,20 +58,8 @@ public class UnlockManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-        //TakeSaveTreasure();
+    {     
         gold.text = PlayerPrefs.GetString("ToTalGold", gold.text);
        
-    }
-    private void TakeSaveTreasure()
-    {
-        SaveJson saveJson = new SaveJson();
-        // Load total treasure
-        var jsonTextFile = Resources.Load<TextAsset>("Text/playerTreasure");
-
-        // Calculate total treasure
-        Treasure treasure = JsonUtility.FromJson<Treasure>(jsonTextFile.text);
-        gold.text = treasure.totalTreasure.ToString();
-    }
+    }  
 }
