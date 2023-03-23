@@ -62,20 +62,4 @@ public class CharacterStateEvent
                 return weapon;
         }
     }
-
-    public IWeapon ChooseWeapon(string weaponString, IWeapon _weapon)
-    {
-        switch (weaponString)
-        {
-            case "Sword":
-                _weapon = new Sword();
-                return _weapon;
-            case "Spear":
-                _weapon = new Spear();
-                return _weapon;
-            default:
-                _weapon = new Sword();
-                return _weapon;
-        }
-    }
 }

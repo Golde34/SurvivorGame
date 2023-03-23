@@ -19,8 +19,6 @@ public class Hero : MonoBehaviour
     public float timeBetweenEnemyAttack = 3;
     public Vector2 speed1 = new Vector2(0, 2f);
     public Vector2 speed2 = new Vector2(2f, 0);
-    Vector2 localScale;
-    GameObject target;
     TextMeshProUGUI diamondText;
 
     // use this to set the speed as player drag the joystick further from the core
@@ -151,21 +149,5 @@ public class Hero : MonoBehaviour
         //File.WriteAllText(Application.dataPath + "/Resources/Text/playerTreasure.json", savedJson.ToString());
         //Debug.Log(Application.dataPath + "/Resources/Text/playerTreasure.json");
         return total;
-    }
-
-    private void WriteToFile(string fileName, string json)
-    {
-        string path = GetFilePath(fileName);
-        FileStream fileStream = new FileStream(path, FileMode.Create);
-
-        using (StreamWriter writer = new StreamWriter(fileStream))
-        {
-            writer.Write(json);
-        }
-    }
-
-    private string GetFilePath(string fileName)
-    {
-        return Application.dataPath + "/" + fileName;
     }
 }
